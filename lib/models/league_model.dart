@@ -1,3 +1,5 @@
+import 'package:live_football_score/models/t.dart';
+
 class LeagueModel {
   String? cId;
   String? cName;
@@ -20,7 +22,7 @@ class LeagueModel {
   List<String>? countryCodes;
   List<Matches>? matches;
   L? l;
-  List<T>? t;
+  // List<T>? t;
   List<Estats>? estats;
   // List<Epstats>? epstats;
   List<Estats>? epstats;
@@ -46,7 +48,7 @@ class LeagueModel {
       this.countryCodes,
       this.matches,
       this.l,
-      this.t,
+      // this.t,
       this.estats,
       this.epstats});
 
@@ -79,12 +81,12 @@ class LeagueModel {
       });
     }
     l = json['L'] != null ? L.fromJson(json['L']) : null;
-    if (json['T'] != null) {
-      t = <T>[];
-      json['T'].forEach((v) {
-        t!.add(T.fromJson(v));
-      });
-    }
+    // if (json['T'] != null) {
+    //   t = <T>[];
+    //   json['T'].forEach((v) {
+    //     t!.add(T.fromJson(v));
+    //   });
+    // }
     if (json['estats'] != null) {
       estats = <Estats>[];
       json['estats'].forEach((v) {
@@ -128,9 +130,9 @@ class LeagueModel {
     if (l != null) {
       data['L'] = l!.toJson();
     }
-    if (t != null) {
-      data['T'] = t!.map((v) => v.toJson()).toList();
-    }
+    // if (t != null) {
+    //   data['T'] = t!.map((v) => v.toJson()).toList();
+    // }
     if (estats != null) {
       data['estats'] = estats!.map((v) => v.toJson()).toList();
     }
@@ -893,64 +895,6 @@ class LTeams {
     data['in_progress'] = inProgress;
     data['form'] = form;
     data['stage_phases'] = stagePhases;
-    return data;
-  }
-}
-
-class T {
-  String? id;
-  int? ranking;
-  String? goals;
-  String? penalties;
-  String? participantName;
-  Team? team;
-
-  T(
-      {this.id,
-      this.ranking,
-      this.goals,
-      this.penalties,
-      this.participantName,
-      this.team});
-
-  T.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    ranking = json['ranking'];
-    goals = json['goals'];
-    penalties = json['penalties'];
-    participantName = json['participant_name'];
-    team = json['team'] != null ? Team.fromJson(json['team']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['ranking'] = ranking;
-    data['goals'] = goals;
-    data['penalties'] = penalties;
-    data['participant_name'] = participantName;
-    if (team != null) {
-      data['team'] = team!.toJson();
-    }
-    return data;
-  }
-}
-
-class Team {
-  String? name;
-  String? id;
-
-  Team({this.name, this.id});
-
-  Team.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    id = json['id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['id'] = id;
     return data;
   }
 }

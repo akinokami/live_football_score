@@ -168,9 +168,9 @@ class MatchDetailModel {
     aStart = json['a_start'];
     aEnd = json['a_end'];
     cov = json['cov'];
-    score = json['score'].cast<int>();
-    htScore = json['ht_score'].cast<int>();
-    ftScore = json['ft_score'].cast<int>();
+    score = json['score'] != null ? json['score'].cast<int>() : [];
+    htScore = json['ht_score'] != null ? json['ht_score'].cast<int>() : [];
+    ftScore = json['ft_score'] != null ? json['ft_score'].cast<int>() : [];
     highlighted = json['highlighted'];
     hasPdata = json['has_pdata'];
     canEndWithDraw = json['can_end_with_draw'];
@@ -1542,7 +1542,8 @@ class Forms {
     pos = json['pos'];
     idx = json['idx'];
     kn = json['kn'];
-    formsText = json['formsText'].cast<String>();
+    formsText =
+        json['formsText'] != null ? json['formsText'].cast<String>() : [];
     if (json['results'] != null) {
       results = <Results>[];
       json['results'].forEach((v) {
@@ -1694,9 +1695,9 @@ class Results {
     round = json['round'];
     start = json['start'];
     cov = json['cov'];
-    score = json['score'].cast<int>();
-    htScore = json['ht_score'].cast<int>();
-    ftScore = json['ft_score'].cast<int>();
+    score = json['score'] != null ? json['score'].cast<int>() : [];
+    htScore = json['ht_score'] != null ? json['ht_score'].cast<int>() : [];
+    ftScore = json['ft_score'] != null ? json['ft_score'].cast<int>() : [];
     highlighted = json['highlighted'];
     hasPdata = json['has_pdata'];
     canEndWithDraw = json['can_end_with_draw'];

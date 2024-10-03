@@ -1,5 +1,6 @@
 import 'package:live_football_score/models/league_model.dart';
 import 'package:live_football_score/models/match_model.dart';
+import 'package:live_football_score/models/t.dart';
 import 'package:live_football_score/services/api_utils.dart';
 
 import '../models/match_detail_model.dart';
@@ -134,6 +135,18 @@ class ApiRepo {
           });
       final team = response.data;
       return LeagueModel.fromJson(team);
+    } catch (e) {
+      throw CustomException(e.toString());
+    }
+  }
+
+  ///Top Scorers
+  Future<List<T>> getTopScorers(String leagueId) async {
+    try {
+      final response = await apiUtils.get(
+          url: "${ApiConstant.baseUrl1}en/stage/ts/soccer/$leagueId");
+      final t = response.data['T'] as List;
+      return t.map((item) => T.fromJson(item)).toList();
     } catch (e) {
       throw CustomException(e.toString());
     }

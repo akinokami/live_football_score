@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:live_football_score/controller/league_controller.dart';
 import 'package:live_football_score/utils/color_const.dart';
 import 'package:live_football_score/utils/dimen_const.dart';
+import 'package:live_football_score/views/screens/league/league_tandp_widget.dart';
+import 'package:live_football_score/views/screens/league/league_top_scorers_widget.dart';
 import 'package:live_football_score/views/widgets/custom_loading.dart';
 
 import '../../widgets/custom_text.dart';
@@ -79,6 +81,11 @@ class LeagueScreen extends StatelessWidget {
                           PreferredSize(
                             preferredSize: Size.fromHeight(30.h),
                             child: TabBar(
+                              onTap: (int value) {
+                                if (value == 1) {
+                                  leagueController.getTopScorers();
+                                }
+                              },
                               indicatorSize: TabBarIndicatorSize.tab,
                               dividerColor: Colors.transparent,
                               indicator: BoxDecoration(
@@ -99,13 +106,25 @@ class LeagueScreen extends StatelessWidget {
                       ),
                     ];
                   },
-                  body: TabBarView(
-                    children: [
-                      Center(child: Text('Info Page')),
-                      Center(child: Text('Matches Page')),
-                      Center(child: Text('Players Page')),
-                      Center(child: Text('Players Page')),
-                    ],
+                  body: Obx(
+                    () => leagueController.isLoading1.value
+                        ? const Center(
+                            child: CustomLoading(),
+                          )
+                        : TabBarView(
+                            children: [
+                              Center(child: Text('Info Page')),
+                              LeagueTopScorersWidget(
+                                t: leagueController.t,
+                              ),
+                              LeagueTandPWidget(
+                                estats: leagueController.league.value.epstats,
+                              ),
+                              LeagueTandPWidget(
+                                estats: leagueController.league.value.estats,
+                              ),
+                            ],
+                          ),
                   ),
                 ),
         ),

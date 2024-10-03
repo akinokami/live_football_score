@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:live_football_score/models/t.dart';
 
 import '../models/match_detail_model.dart';
 import '../services/api_repo.dart';
@@ -16,6 +17,8 @@ class MatchDetailController extends GetxController {
   // Rx<Tables> table = Tables().obs;
 
   // Rx<H2HModel> h2hModel = H2HModel().obs;
+
+  RxList<T> t = <T>[].obs;
 
   @override
   void onInit() {
@@ -80,4 +83,17 @@ class MatchDetailController extends GetxController {
   //     isLoading1.value = false;
   //   }
   // }
+
+  Future<void> getTopScorers() async {
+    isLoading1.value = true;
+    try {
+      final result =
+          await ApiRepo().getTopScorers(matchDetail.value.stId ?? '');
+      t.value = result;
+    } catch (e) {
+      constants.showSnackBar(title: 'Error', msg: e.toString(), textColor: red);
+    } finally {
+      isLoading1.value = false;
+    }
+  }
 }

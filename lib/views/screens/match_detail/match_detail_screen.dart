@@ -4,11 +4,14 @@ import 'package:get/get.dart';
 import 'package:live_football_score/controller/match_detail_controller.dart';
 import 'package:live_football_score/utils/color_const.dart';
 import 'package:live_football_score/utils/dimen_const.dart';
+import 'package:live_football_score/views/screens/match_detail/info_widget.dart';
+import 'package:live_football_score/views/screens/match_detail/play_by_play_widget.dart';
 import 'package:live_football_score/views/screens/team/team_screen.dart';
 import 'package:live_football_score/views/widgets/custom_loading.dart';
 
 import '../../../utils/function.dart';
 import '../../widgets/custom_text.dart';
+import '../league/league_top_scorers_widget.dart';
 
 class MatchDetailScreen extends StatelessWidget {
   const MatchDetailScreen({super.key});
@@ -17,7 +20,7 @@ class MatchDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final matchDetailController = Get.put(MatchDetailController());
     return DefaultTabController(
-      length: 3,
+      length: 6,
       child: Scaffold(
         body: Obx(
           () => matchDetailController.isLoading.value
@@ -224,6 +227,12 @@ class MatchDetailScreen extends StatelessWidget {
                           PreferredSize(
                             preferredSize: Size.fromHeight(30.h),
                             child: TabBar(
+                              onTap: (int value) {
+                                if (value == 5) {
+                                  matchDetailController.getTopScorers();
+                                }
+                              },
+                              isScrollable: true,
                               indicatorSize: TabBarIndicatorSize.tab,
                               dividerColor: Colors.transparent,
                               indicator: BoxDecoration(
@@ -233,8 +242,11 @@ class MatchDetailScreen extends StatelessWidget {
                               unselectedLabelColor: Colors.white,
                               tabs: [
                                 Tab(text: 'info'.tr),
-                                Tab(text: 'matches'.tr),
-                                Tab(text: 'players'.tr),
+                                Tab(text: 'play_by_play'.tr),
+                                Tab(text: 'table'.tr),
+                                Tab(text: 'h2h'.tr),
+                                Tab(text: 'stats'.tr),
+                                Tab(text: 'top_scorers'.tr),
                               ],
                             ),
                           ),
@@ -243,12 +255,29 @@ class MatchDetailScreen extends StatelessWidget {
                       ),
                     ];
                   },
-                  body: TabBarView(
-                    children: [
-                      Center(child: Text('Info Page')),
-                      Center(child: Text('Matches Page')),
-                      Center(child: Text('Players Page')),
-                    ],
+                  body: Obx(
+                    () => matchDetailController.isLoading1.value
+                        ? const Center(
+                            child: CustomLoading(),
+                          )
+                        : TabBarView(
+                            children: [
+                              InfoWidget(
+                                matchDetailModel:
+                                    matchDetailController.matchDetail.value,
+                              ),
+                              PlayByPlayWidget(
+                                comms: matchDetailController
+                                    .matchDetail.value.comms,
+                              ),
+                              Center(child: Text('Info Page')),
+                              Center(child: Text('Matches Page')),
+                              Center(child: Text('Players Page')),
+                              LeagueTopScorersWidget(
+                                t: matchDetailController.t,
+                              ),
+                            ],
+                          ),
                   ),
                 ),
         ),
