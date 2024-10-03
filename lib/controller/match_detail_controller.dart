@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:live_football_score/models/h2h_model.dart';
 import 'package:live_football_score/models/t.dart';
 
 import '../models/match_detail_model.dart';
@@ -16,7 +17,7 @@ class MatchDetailController extends GetxController {
   // Rx<StandingModel> standing = StandingModel().obs;
   // Rx<Tables> table = Tables().obs;
 
-  // Rx<H2HModel> h2hModel = H2HModel().obs;
+  Rx<H2HModel> h2hModel = H2HModel().obs;
 
   RxList<T> t = <T>[].obs;
 
@@ -66,23 +67,23 @@ class MatchDetailController extends GetxController {
   //   }
   // }
 
-  // Future<void> getH2H() async {
-  //   isLoading1.value = true;
-  //   try {
-  //     final result = await ApiRepo().getH2H(
-  //         (matchDetailData.value.teams ?? []).isNotEmpty
-  //             ? (matchDetailData.value.teams?[0].id ?? '')
-  //             : '',
-  //         (matchDetailData.value.teams ?? []).length > 1
-  //             ? (matchDetailData.value.teams?[1].id ?? '')
-  //             : '');
-  //     h2hModel.value = result;
-  //   } catch (e) {
-  //     constants.showSnackBar(title: 'Error', msg: e.toString(), textColor: red);
-  //   } finally {
-  //     isLoading1.value = false;
-  //   }
-  // }
+  Future<void> getH2H() async {
+    isLoading1.value = true;
+    try {
+      final result = await ApiRepo().getH2H(
+          (matchDetail.value.teams ?? []).isNotEmpty
+              ? (matchDetail.value.teams?[0].id ?? '')
+              : '',
+          (matchDetail.value.teams ?? []).length > 1
+              ? (matchDetail.value.teams?[1].id ?? '')
+              : '');
+      h2hModel.value = result;
+    } catch (e) {
+      constants.showSnackBar(title: 'Error', msg: e.toString(), textColor: red);
+    } finally {
+      isLoading1.value = false;
+    }
+  }
 
   Future<void> getTopScorers() async {
     isLoading1.value = true;

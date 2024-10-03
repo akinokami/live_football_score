@@ -1,3 +1,4 @@
+import 'package:live_football_score/models/h2h_model.dart';
 import 'package:live_football_score/models/league_model.dart';
 import 'package:live_football_score/models/match_model.dart';
 import 'package:live_football_score/models/t.dart';
@@ -90,19 +91,17 @@ class ApiRepo {
   //   }
   // }
 
-  // Future<H2HModel> getH2H(String teamAId, String teamBId) async {
-  //   try {
-  //     final response = await apiUtils.get(
-  //         url: "${ApiConstant.baseUrl}en/match/h2h/soccer/1/$teamAId/$teamBId",
-  //         queryParameters: {
-  //           "oddsPresentationConfigsId": "SNAPSCORE_APP_MAIN_MARKETS_V1"
-  //         });
-  //     final matchDetail = response.data;
-  //     return H2HModel.fromJson(matchDetail);
-  //   } catch (e) {
-  //     throw CustomException(e.toString());
-  //   }
-  // }
+  Future<H2HModel> getH2H(String teamAId, String teamBId) async {
+    try {
+      final response = await apiUtils.get(
+          url:
+              "${ApiConstant.baseUrl1}en/match/h2h/soccer/1/$teamAId/$teamBId");
+      final matchDetail = response.data;
+      return H2HModel.fromJson(matchDetail);
+    } catch (e) {
+      throw CustomException(e.toString());
+    }
+  }
 
   ///Team
   Future<TeamModel> getTeam(String teamId) async {

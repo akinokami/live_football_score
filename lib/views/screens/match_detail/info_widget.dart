@@ -1,11 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_football_score/models/match_detail_model.dart';
 import 'package:live_football_score/utils/dimen_const.dart';
 import 'package:live_football_score/utils/function.dart';
-import 'package:live_football_score/views/widgets/custom_card.dart';
 
 import '../../../utils/color_const.dart';
 import '../../widgets/custom_text.dart';
