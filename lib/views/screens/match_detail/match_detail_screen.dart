@@ -12,6 +12,7 @@ import 'package:live_football_score/views/widgets/custom_loading.dart';
 
 import '../../../utils/function.dart';
 import '../../widgets/custom_text.dart';
+import '../league/league_table_widget.dart';
 import '../league/league_top_scorers_widget.dart';
 
 class MatchDetailScreen extends StatelessWidget {
@@ -279,7 +280,9 @@ class MatchDetailScreen extends StatelessWidget {
                                 comms: matchDetailController
                                     .matchDetail.value.comms,
                               ),
-                              Center(child: Text('Info Page')),
+                              LeagueTableWidget(
+                                tables: matchDetailController.table.value,
+                              ),
                               H2HWidget(
                                 h2hModel: matchDetailController.h2hModel.value,
                               ),

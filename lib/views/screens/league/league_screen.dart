@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:live_football_score/controller/league_controller.dart';
 import 'package:live_football_score/utils/color_const.dart';
 import 'package:live_football_score/utils/dimen_const.dart';
+import 'package:live_football_score/views/screens/league/league_table_widget.dart';
 import 'package:live_football_score/views/screens/league/league_tandp_widget.dart';
 import 'package:live_football_score/views/screens/league/league_top_scorers_widget.dart';
 import 'package:live_football_score/views/widgets/custom_loading.dart';
@@ -113,7 +114,15 @@ class LeagueScreen extends StatelessWidget {
                           )
                         : TabBarView(
                             children: [
-                              Center(child: Text('Info Page')),
+                              (leagueController.league.value.l?.tables ?? [])
+                                      .isEmpty
+                                  ? Center(
+                                      child: CustomText(text: 'no_data'.tr),
+                                    )
+                                  : LeagueTableWidget(
+                                      tables: leagueController
+                                          .league.value.l?.tables?[0],
+                                    ),
                               LeagueTopScorersWidget(
                                 t: leagueController.t,
                               ),

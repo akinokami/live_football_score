@@ -1,4 +1,5 @@
 import 'package:live_football_score/models/t.dart';
+import 'package:live_football_score/models/table_model.dart';
 
 class LeagueModel {
   String? cId;
@@ -771,133 +772,133 @@ class L {
   }
 }
 
-class Tables {
-  int? code;
-  String? name;
-  List<Legend>? legend;
-  List<LTeams>? teams;
+// class Tables {
+//   int? code;
+//   String? name;
+//   List<Legend>? legend;
+//   List<LTeams>? teams;
 
-  Tables({this.code, this.name, this.legend, this.teams});
+//   Tables({this.code, this.name, this.legend, this.teams});
 
-  Tables.fromJson(Map<String, dynamic> json) {
-    code = json['code'];
-    name = json['name'];
-    if (json['legend'] != null) {
-      legend = <Legend>[];
-      json['legend'].forEach((v) {
-        legend!.add(Legend.fromJson(v));
-      });
-    }
-    if (json['teams'] != null) {
-      teams = <LTeams>[];
-      json['teams'].forEach((v) {
-        teams!.add(LTeams.fromJson(v));
-      });
-    }
-  }
+//   Tables.fromJson(Map<String, dynamic> json) {
+//     code = json['code'];
+//     name = json['name'];
+//     if (json['legend'] != null) {
+//       legend = <Legend>[];
+//       json['legend'].forEach((v) {
+//         legend!.add(Legend.fromJson(v));
+//       });
+//     }
+//     if (json['teams'] != null) {
+//       teams = <LTeams>[];
+//       json['teams'].forEach((v) {
+//         teams!.add(LTeams.fromJson(v));
+//       });
+//     }
+//   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['code'] = code;
-    data['name'] = name;
-    if (legend != null) {
-      data['legend'] = legend!.map((v) => v.toJson()).toList();
-    }
-    if (teams != null) {
-      data['teams'] = teams!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = <String, dynamic>{};
+//     data['code'] = code;
+//     data['name'] = name;
+//     if (legend != null) {
+//       data['legend'] = legend!.map((v) => v.toJson()).toList();
+//     }
+//     if (teams != null) {
+//       data['teams'] = teams!.map((v) => v.toJson()).toList();
+//     }
+//     return data;
+//   }
+// }
 
-class Legend {
-  int? stagePhase;
-  String? stagePhaseText;
+// class Legend {
+//   int? stagePhase;
+//   String? stagePhaseText;
 
-  Legend({this.stagePhase, this.stagePhaseText});
+//   Legend({this.stagePhase, this.stagePhaseText});
 
-  Legend.fromJson(Map<String, dynamic> json) {
-    stagePhase = json['stage_phase'];
-    stagePhaseText = json['stage_phase_text'];
-  }
+//   Legend.fromJson(Map<String, dynamic> json) {
+//     stagePhase = json['stage_phase'];
+//     stagePhaseText = json['stage_phase_text'];
+//   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['stage_phase'] = stagePhase;
-    data['stage_phase_text'] = stagePhaseText;
-    return data;
-  }
-}
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = <String, dynamic>{};
+//     data['stage_phase'] = stagePhase;
+//     data['stage_phase_text'] = stagePhaseText;
+//     return data;
+//   }
+// }
 
-class LTeams {
-  int? ranking;
-  String? teamId;
-  String? teamName;
-  String? played;
-  String? wins;
-  String? draws;
-  String? loss;
-  String? goalFor;
-  String? goalAgainst;
-  String? goalDifference;
-  String? points;
-  int? inProgress;
-  List<String>? form;
-  List<int>? stagePhases;
+// class LTeams {
+//   int? ranking;
+//   String? teamId;
+//   String? teamName;
+//   String? played;
+//   String? wins;
+//   String? draws;
+//   String? loss;
+//   String? goalFor;
+//   String? goalAgainst;
+//   String? goalDifference;
+//   String? points;
+//   int? inProgress;
+//   List<String>? form;
+//   List<int>? stagePhases;
 
-  LTeams(
-      {this.ranking,
-      this.teamId,
-      this.teamName,
-      this.played,
-      this.wins,
-      this.draws,
-      this.loss,
-      this.goalFor,
-      this.goalAgainst,
-      this.goalDifference,
-      this.points,
-      this.inProgress,
-      this.form,
-      this.stagePhases});
+//   LTeams(
+//       {this.ranking,
+//       this.teamId,
+//       this.teamName,
+//       this.played,
+//       this.wins,
+//       this.draws,
+//       this.loss,
+//       this.goalFor,
+//       this.goalAgainst,
+//       this.goalDifference,
+//       this.points,
+//       this.inProgress,
+//       this.form,
+//       this.stagePhases});
 
-  LTeams.fromJson(Map<String, dynamic> json) {
-    ranking = json['ranking'];
-    teamId = json['team_id'];
-    teamName = json['team_name'];
-    played = json['played'];
-    wins = json['wins'];
-    draws = json['draws'];
-    loss = json['loss'];
-    goalFor = json['goal_for'];
-    goalAgainst = json['goal_against'];
-    goalDifference = json['goal_difference'];
-    points = json['points'];
-    inProgress = json['in_progress'];
-    form = json['form'] != null ? json['form'].cast<String>() : [];
-    stagePhases =
-        json['stage_phases'] != null ? json['stage_phases'].cast<int>() : [];
-  }
+//   LTeams.fromJson(Map<String, dynamic> json) {
+//     ranking = json['ranking'];
+//     teamId = json['team_id'];
+//     teamName = json['team_name'];
+//     played = json['played'];
+//     wins = json['wins'];
+//     draws = json['draws'];
+//     loss = json['loss'];
+//     goalFor = json['goal_for'];
+//     goalAgainst = json['goal_against'];
+//     goalDifference = json['goal_difference'];
+//     points = json['points'];
+//     inProgress = json['in_progress'];
+//     form = json['form'] != null ? json['form'].cast<String>() : [];
+//     stagePhases =
+//         json['stage_phases'] != null ? json['stage_phases'].cast<int>() : [];
+//   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['ranking'] = ranking;
-    data['team_id'] = teamId;
-    data['team_name'] = teamName;
-    data['played'] = played;
-    data['wins'] = wins;
-    data['draws'] = draws;
-    data['loss'] = loss;
-    data['goal_for'] = goalFor;
-    data['goal_against'] = goalAgainst;
-    data['goal_difference'] = goalDifference;
-    data['points'] = points;
-    data['in_progress'] = inProgress;
-    data['form'] = form;
-    data['stage_phases'] = stagePhases;
-    return data;
-  }
-}
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = <String, dynamic>{};
+//     data['ranking'] = ranking;
+//     data['team_id'] = teamId;
+//     data['team_name'] = teamName;
+//     data['played'] = played;
+//     data['wins'] = wins;
+//     data['draws'] = draws;
+//     data['loss'] = loss;
+//     data['goal_for'] = goalFor;
+//     data['goal_against'] = goalAgainst;
+//     data['goal_difference'] = goalDifference;
+//     data['points'] = points;
+//     data['in_progress'] = inProgress;
+//     data['form'] = form;
+//     data['stage_phases'] = stagePhases;
+//     return data;
+//   }
+// }
 
 class Estats {
   String? name;
