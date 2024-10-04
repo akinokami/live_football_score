@@ -90,6 +90,11 @@ class ViLanguage {
     'upcoming': 'Sắp tới',
     'results': 'Kết quả',
     'squad': 'Đội hình',
-    'lineups': 'Đội hình'
+    'lineups': 'Đội hình',
+    //
+    'live': 'Sống',
+    'league': 'Liên minh',
+    'head_to_head_matches': 'Trận đấu đối đầu',
+    'last_matches': 'Trận đấu cuối cùng'
   };
 }

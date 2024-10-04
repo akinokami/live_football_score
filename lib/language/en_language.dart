@@ -92,6 +92,11 @@ class EnLanguage {
     'upcoming': 'Upcoming',
     'results': 'Results',
     'squad': 'Squad',
-    'lineups': 'LineUps'
+    'lineups': 'LineUps',
+    //
+    'live': 'Live',
+    'league': 'League',
+    'head_to_head_matches': 'Head To Head Matches',
+    'last_matches': 'Last Matches'
   };
 }

@@ -92,6 +92,11 @@ class HiLanguage {
     'upcoming': 'आगामी',
     'results': 'परिणाम',
     'squad': 'दस्ता',
-    'lineups': 'लाइनअप'
+    'lineups': 'लाइनअप',
+    //
+    'live': 'रहना',
+    'league': 'संघ',
+    'head_to_head_matches': 'हेड टू हेड मैच',
+    'last_matches': 'अंतिम मैच'
   };
 }

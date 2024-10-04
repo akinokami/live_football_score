@@ -92,6 +92,11 @@ class ZhLanguage {
     'upcoming': '即將推出',
     'results': '結果',
     'squad': '隊',
-    'lineups': '陣容'
+    'lineups': '陣容',
+    //
+    'live': '居住',
+    'league': '聯盟',
+    'head_to_head_matches': '頭對頭比賽',
+    'last_matches': '最後一場比賽'
   };
 }

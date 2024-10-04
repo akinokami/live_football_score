@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:live_football_score/utils/enum.dart';
+import 'package:live_football_score/views/screens/live/live_screen.dart';
 import 'package:live_football_score/views/screens/score/score_screen.dart';
 import 'package:live_football_score/views/screens/settings/setting_screen.dart';
 import 'package:live_football_score/views/widgets/custom_text.dart';
@@ -163,6 +164,14 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
+                Icons.scoreboard_outlined,
+                size: 18.sp,
+              ),
+              label: 'live'.tr,
+              backgroundColor: primaryColor,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
                 Icons.settings,
                 size: 18.sp,
               ),
@@ -185,6 +194,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
             index: bottomNavController.tabIndex.value,
             children: const [
               ScoreScreen(),
+              LiveScreen(),
               SettingScreen(),
             ],
           )),
