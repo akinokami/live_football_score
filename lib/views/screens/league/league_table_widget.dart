@@ -85,9 +85,10 @@ class LeagueTableWidget extends StatelessWidget {
             itemBuilder: ((context, index) {
               return Column(
                 children: [
-                  Padding(
+                  Container(
                     padding:
                         EdgeInsets.only(bottom: 2.h, top: 2.h, right: 10.w),
+                    color: tables?.teams?[index].teamId == homeId || tables?.teams?[index].teamId == awayId?  tableTeamColor:Colors.white,
                     child: Row(
                       children: [
                         Container(

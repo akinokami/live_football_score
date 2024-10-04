@@ -282,6 +282,23 @@ class MatchDetailScreen extends StatelessWidget {
                               ),
                               LeagueTableWidget(
                                 tables: matchDetailController.table.value,
+                                homeId: (matchDetailController
+                                                .matchDetail.value.teams ??
+                                            [])
+                                        .isNotEmpty
+                                    ? (matchDetailController
+                                            .matchDetail.value.teams?[0].id ??
+                                        '')
+                                    : '',
+                                awayId: (matchDetailController
+                                                    .matchDetail.value.teams ??
+                                                [])
+                                            .length >
+                                        1
+                                    ? (matchDetailController
+                                            .matchDetail.value.teams?[1].id ??
+                                        '')
+                                    : '',
                               ),
                               H2HWidget(
                                 h2hModel: matchDetailController.h2hModel.value,
