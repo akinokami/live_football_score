@@ -38,7 +38,8 @@ class ApiRepo {
       final response = await apiUtils.get(
           url: "${ApiConstant.baseUrl1}en/matches/soccer/live",
           queryParameters: {
-            "oddsPresentationConfigsId": "SNAPSCORE_APP_1X2_V1"
+            "oddsPresentationConfigsId": "BETWAY_AFRICA_APP_PLAIN_1X2_V2",
+            "oddsProviderIds": 11
           });
       if (response.data == "[]") {
         return [];

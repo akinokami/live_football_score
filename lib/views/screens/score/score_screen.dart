@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_football_score/controller/score_controller.dart';
 import 'package:live_football_score/views/screens/league/league_screen.dart';
+import 'package:live_football_score/views/screens/search/search_screen.dart';
 import 'package:live_football_score/views/widgets/custom_loading.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
@@ -29,9 +30,9 @@ class ScoreScreen extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () async {
-                // Get.to(() => const SearchScreen(), arguments: {
-                //   'matches': matchController.matches,
-                // });
+                Get.to(() => const SearchScreen(), arguments: {
+                  'matches': scoreController.matches,
+                });
               },
               icon: Icon(
                 Icons.search,
