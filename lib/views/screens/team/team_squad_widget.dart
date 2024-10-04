@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_football_score/utils/color_const.dart';
 import 'package:live_football_score/utils/dimen_const.dart';
+import 'package:live_football_score/views/screens/player/player_screen.dart';
 
 import '../../../models/team_model.dart';
 import '../../widgets/custom_text.dart';
@@ -42,25 +43,31 @@ class TeamSquadWidget extends StatelessWidget {
                   itemBuilder: ((context, index) {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 5.h),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.account_circle,
-                            size: 30.sp,
-                            color: secondaryColor,
-                          ),
-                          kSizedBoxW5,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(text: coach?[index].name),
-                              CustomText(
-                                text: coach?[index].cname,
-                                fontSize: 11.sp,
-                              ),
-                            ],
-                          ),
-                        ],
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(() => const PlayerScreen(),
+                              arguments: {"playerId": coach?[index].id});
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.account_circle,
+                              size: 30.sp,
+                              color: secondaryColor,
+                            ),
+                            kSizedBoxW5,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(text: coach?[index].name),
+                                CustomText(
+                                  text: coach?[index].cname,
+                                  color: Colors.black54,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   }),
@@ -94,32 +101,38 @@ class TeamSquadWidget extends StatelessWidget {
                   itemBuilder: ((context, index) {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 5.h),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.account_circle,
-                            size: 30.sp,
-                            color: secondaryColor,
-                          ),
-                          // kSizedBoxW5,
-                          // SizedBox(
-                          //   width: 10.w,
-                          //   child: CustomText(
-                          //     text: players?[index].sNumber ?? '',
-                          //   ),
-                          // ),
-                          kSizedBoxW5,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(text: players?[index].name),
-                              CustomText(
-                                text: players?[index].cname,
-                                fontSize: 11.sp,
-                              ),
-                            ],
-                          ),
-                        ],
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(() => const PlayerScreen(),
+                              arguments: {"playerId": players?[index].id});
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.account_circle,
+                              size: 30.sp,
+                              color: secondaryColor,
+                            ),
+                            // kSizedBoxW5,
+                            // SizedBox(
+                            //   width: 10.w,
+                            //   child: CustomText(
+                            //     text: players?[index].sNumber ?? '',
+                            //   ),
+                            // ),
+                            kSizedBoxW5,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(text: players?[index].name),
+                                CustomText(
+                                  text: players?[index].cname,
+                                  color: Colors.black54,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   }),

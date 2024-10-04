@@ -1,7 +1,9 @@
 import 'package:live_football_score/models/h2h_model.dart';
 import 'package:live_football_score/models/league_model.dart';
 import 'package:live_football_score/models/match_model.dart';
+import 'package:live_football_score/models/player_model.dart';
 import 'package:live_football_score/models/t.dart';
+import 'package:live_football_score/models/table_model.dart';
 import 'package:live_football_score/services/api_utils.dart';
 
 import '../models/match_detail_model.dart';
@@ -74,22 +76,19 @@ class ApiRepo {
     }
   }
 
-  // Future<StandingModel> getStandings(String stId) async {
-  //   try {
-  //     final response = await apiUtils.get(
-  //         url: "${ApiConstant.baseUrl}en/stage/lg/soccer/$stId",
-  //         queryParameters: {
-  //           "oddsPresentationConfigsId": "SNAPSCORE_APP_MAIN_MARKETS_V1"
-  //         });
-  //     if (response.data == "{}") {
-  //       return StandingModel();
-  //     }
-  //     final matchDetail = response.data;
-  //     return StandingModel.fromJson(matchDetail);
-  //   } catch (e) {
-  //     throw CustomException(e.toString());
-  //   }
-  // }
+  Future<TableModel> getStandings(String stId) async {
+    try {
+      final response = await apiUtils.get(
+          url: "${ApiConstant.baseUrl1}en/stage/lg/soccer/$stId");
+      if (response.data == "{}") {
+        return TableModel();
+      }
+      final tm = response.data;
+      return TableModel.fromJson(tm);
+    } catch (e) {
+      throw CustomException(e.toString());
+    }
+  }
 
   Future<H2HModel> getH2H(String teamAId, String teamBId) async {
     try {
@@ -146,6 +145,18 @@ class ApiRepo {
           url: "${ApiConstant.baseUrl1}en/stage/ts/soccer/$leagueId");
       final t = response.data['T'] as List;
       return t.map((item) => T.fromJson(item)).toList();
+    } catch (e) {
+      throw CustomException(e.toString());
+    }
+  }
+
+  ///Player
+  Future<PlayerModel> getPlayer(String playerId) async {
+    try {
+      final response = await apiUtils.get(
+          url: "${ApiConstant.baseUrl1}en/player/soccer/profile/$playerId");
+      final player = response.data;
+      return PlayerModel.fromJson(player);
     } catch (e) {
       throw CustomException(e.toString());
     }

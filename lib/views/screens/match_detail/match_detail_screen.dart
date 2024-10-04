@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:live_football_score/controller/match_detail_controller.dart';
 import 'package:live_football_score/utils/color_const.dart';
 import 'package:live_football_score/utils/dimen_const.dart';
+import 'package:live_football_score/views/screens/match_detail/h2h_widget.dart';
 import 'package:live_football_score/views/screens/match_detail/info_widget.dart';
 import 'package:live_football_score/views/screens/match_detail/play_by_play_widget.dart';
 import 'package:live_football_score/views/screens/team/team_screen.dart';
@@ -20,7 +21,7 @@ class MatchDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final matchDetailController = Get.put(MatchDetailController());
     return DefaultTabController(
-      length: 6,
+      length: 7,
       child: Scaffold(
         body: Obx(
           () => matchDetailController.isLoading.value
@@ -228,7 +229,13 @@ class MatchDetailScreen extends StatelessWidget {
                             preferredSize: Size.fromHeight(30.h),
                             child: TabBar(
                               onTap: (int value) {
-                                if (value == 5) {
+                                if (value == 3) {
+                                  matchDetailController.getStandings();
+                                }
+                                if (value == 4) {
+                                  matchDetailController.getH2H();
+                                }
+                                if (value == 6) {
                                   matchDetailController.getTopScorers();
                                 }
                               },
@@ -242,6 +249,7 @@ class MatchDetailScreen extends StatelessWidget {
                               unselectedLabelColor: Colors.white,
                               tabs: [
                                 Tab(text: 'info'.tr),
+                                Tab(text: 'lineups'.tr),
                                 Tab(text: 'play_by_play'.tr),
                                 Tab(text: 'table'.tr),
                                 Tab(text: 'h2h'.tr),
@@ -266,12 +274,15 @@ class MatchDetailScreen extends StatelessWidget {
                                 matchDetailModel:
                                     matchDetailController.matchDetail.value,
                               ),
+                              Center(child: Text('Info Page')),
                               PlayByPlayWidget(
                                 comms: matchDetailController
                                     .matchDetail.value.comms,
                               ),
                               Center(child: Text('Info Page')),
-                              Center(child: Text('Matches Page')),
+                              H2HWidget(
+                                h2hModel: matchDetailController.h2hModel.value,
+                              ),
                               Center(child: Text('Players Page')),
                               LeagueTopScorersWidget(
                                 t: matchDetailController.t,
