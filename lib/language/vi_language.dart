@@ -15,7 +15,6 @@ class ViLanguage {
     'please_wait': 'Vui lòng đợi',
     'play': 'Chơi',
     'sound': 'Âm thanh',
-    //
     'profile': 'Hồ sơ',
     'career': 'Sự nghiệp',
     'stats': 'Thống kê',
@@ -65,7 +64,6 @@ class ViLanguage {
     'offsides': 'Việt vị',
     'air_challenges_won': 'Tất cả các thử thách đã thắng',
     'air_challenges_lose': 'Mọi thử thách đều thua',
-    //
     'table': 'Bàn',
     'top_scorers': 'Cầu thủ ghi bàn hàng đầu',
     'players': 'Người chơi',
@@ -86,16 +84,27 @@ class ViLanguage {
     'city': 'Thành phố',
     'capacity': 'Dung tích',
     'attendance': 'Sự tham dự',
-    //
     'upcoming': 'Sắp tới',
     'results': 'Kết quả',
     'squad': 'Đội hình',
     'lineups': 'Đội hình',
-    //
     'live': 'Sống',
     'league': 'Liên minh',
     'head_to_head_matches': 'Trận đấu đối đầu',
     'last_matches': 'Trận đấu cuối cùng',
     'coach': 'Huấn luyện viên',
+    'possession': 'Chiếm hữu (%)',
+    'shots_on_target': 'Số cú sút trúng mục tiêu',
+    'shots_off_target': 'Bắn trúng mục tiêu',
+    'corner_kicks': 'Đá phạt góc',
+    'throw_ins': 'Ném biên',
+    'fouls': 'Phạm lỗi',
+    'counter_attacks': 'Phản đòn',
+    'goal_kicks': 'Cú phát bóng',
+    'top_season_stats': 'Thống kê mùa giải hàng đầu',
+    'win_percentage_at_home': 'Tỷ lệ thắng trên sân nhà',
+    'win_percentage_away': 'Tỷ lệ thắng trên sân khách',
+    'both_teams_scored': 'Cả hai đội đều ghi bàn (%)',
+    'form': 'Mẫu (mới nhất bên phải)',
   };
 }

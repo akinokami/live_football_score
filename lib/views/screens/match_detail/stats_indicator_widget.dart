@@ -6,8 +6,8 @@ import '../../../utils/dimen_const.dart';
 import '../../widgets/custom_text.dart';
 
 class StatsIndicatorWidget extends StatelessWidget {
-  final int? h;
-  final int? a;
+  final num? h;
+  final num? a;
   final String? title;
   const StatsIndicatorWidget({super.key, this.h, this.a, this.title});
 
@@ -32,8 +32,12 @@ class StatsIndicatorWidget extends StatelessWidget {
                 child: SizedBox(
                   height: 7.h,
                   child: LinearProgressIndicator(
-                    value: (a ?? 0) / ((h ?? 0) + (a ?? 0)),
-                    backgroundColor: secondaryColor,
+                    value: ((h ?? 1) + (a ?? 1)) == 0
+                        ? (a ?? 1) / 1
+                        : (a ?? 1) / ((h ?? 1) + (a ?? 1)),
+                    backgroundColor: ((h ?? 1) + (a ?? 1)) == 0
+                        ? statsColor
+                        : secondaryColor,
                     valueColor: AlwaysStoppedAnimation<Color>(statsColor),
                   ),
                 ),
@@ -43,7 +47,9 @@ class StatsIndicatorWidget extends StatelessWidget {
                 child: SizedBox(
                   height: 7.h,
                   child: LinearProgressIndicator(
-                    value: (a ?? 0) / ((h ?? 0) + (a ?? 0)),
+                    value: ((h ?? 1) + (a ?? 1)) == 0
+                        ? (a ?? 1) / 1
+                        : (a ?? 1) / ((h ?? 1) + (a ?? 1)),
                     backgroundColor: statsColor,
                     valueColor: AlwaysStoppedAnimation<Color>(stats2Color),
                   ),

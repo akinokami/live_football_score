@@ -17,7 +17,6 @@ class EnLanguage {
     'no_data': 'No data found',
     'play': 'Play',
     'sound': 'Sound',
-    //
     'profile': 'Profile',
     'career': 'Career',
     'stats': 'Stats',
@@ -67,7 +66,6 @@ class EnLanguage {
     'offsides': 'Offsides',
     'air_challenges_won': 'All Challenges Won',
     'air_challenges_lose': 'All Challenges Lose',
-    //
     'table': 'Table',
     'top_scorers': 'Top Scorers',
     'players': 'Players',
@@ -88,16 +86,27 @@ class EnLanguage {
     'city': 'City',
     'capacity': 'Capacity',
     'attendance': 'Attendance',
-    //
     'upcoming': 'Upcoming',
     'results': 'Results',
     'squad': 'Squad',
     'lineups': 'LineUps',
-    //
     'live': 'Live',
     'league': 'League',
     'head_to_head_matches': 'Head To Head Matches',
     'last_matches': 'Last Matches',
     'coach': 'Coach',
+    'possession': 'Possession (%)',
+    'shots_on_target': 'Shots On Target',
+    'shots_off_target': 'Shots Off Target',
+    'corner_kicks': 'Corner Kicks',
+    'throw_ins': 'Throw-ins',
+    'fouls': 'Fouls',
+    'counter_attacks': 'Counter Attacks',
+    'goal_kicks': 'Goal Kicks',
+    'top_season_stats': 'Top Season Stats',
+    'win_percentage_at_home': 'Win Percentage At Home',
+    'win_percentage_away': 'Win Percentage Away',
+    'both_teams_scored': 'Both Teams Scored (%)',
+    'form': 'Form (most recent at right)',
   };
 }

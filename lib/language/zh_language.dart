@@ -17,7 +17,6 @@ class ZhLanguage {
     'no_data': '沒有找到數據',
     'play': '玩',
     'sound': '聲音',
-    //
     'profile': '輪廓',
     'career': '職業',
     'stats': '統計數據',
@@ -67,7 +66,6 @@ class ZhLanguage {
     'offsides': '越位',
     'air_challenges_won': '贏得所有挑戰',
     'air_challenges_lose': '所有挑戰都會失敗',
-    //
     'table': '桌子',
     'top_scorers': '最佳射手',
     'players': '玩家',
@@ -88,16 +86,27 @@ class ZhLanguage {
     'city': '城市',
     'capacity': '容量',
     'attendance': '出席率',
-    //
     'upcoming': '即將推出',
     'results': '結果',
     'squad': '隊',
     'lineups': '陣容',
-    //
     'live': '居住',
     'league': '聯盟',
     'head_to_head_matches': '頭對頭比賽',
     'last_matches': '最後一場比賽',
     'coach': '教練',
+    'possession': '擁有 (%)',
+    'shots_on_target': '射門命中目標',
+    'shots_off_target': '射門偏離目標',
+    'corner_kicks': '角球',
+    'throw_ins': '界外球',
+    'fouls': '犯規',
+    'counter_attacks': '反擊',
+    'goal_kicks': '球門球',
+    'top_season_stats': '熱門賽季統計數據',
+    'win_percentage_at_home': '主場勝率',
+    'win_percentage_away': '客場獲勝百分比',
+    'both_teams_scored': '兩隊均得分 (%)',
+    'form': '表格（最新的在右邊）',
   };
 }

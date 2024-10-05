@@ -17,7 +17,6 @@ class HiLanguage {
     'no_data': 'कोई डेटा उपलब्ध नहीं है',
     'play': 'खेल',
     'sound': 'आवाज़',
-    //
     'profile': 'प्रोफ़ाइल',
     'career': 'आजीविका',
     'stats': 'आँकड़े',
@@ -67,7 +66,6 @@ class HiLanguage {
     'offsides': 'ऑफ़साइड',
     'air_challenges_won': 'सभी चुनौतियाँ जीतीं',
     'air_challenges_lose': 'सभी चुनौतियाँ हार जाती हैं',
-    //
     'table': 'मेज़',
     'top_scorers': 'शीर्ष स्कोरर',
     'players': 'खिलाड़ी',
@@ -88,16 +86,27 @@ class HiLanguage {
     'city': 'शहर',
     'capacity': 'क्षमता',
     'attendance': 'उपस्थिति',
-    //
     'upcoming': 'आगामी',
     'results': 'परिणाम',
     'squad': 'दस्ता',
     'lineups': 'लाइनअप',
-    //
     'live': 'रहना',
     'league': 'संघ',
     'head_to_head_matches': 'हेड टू हेड मैच',
     'last_matches': 'अंतिम मैच',
     'coach': 'प्रशिक्षक',
+    'possession': 'कब्ज़ा (%)',
+    'shots_on_target': 'निशाने पर शॉट्स',
+    'shots_off_target': 'लक्ष्य से बाहर शॉट',
+    'corner_kicks': 'कॉर्नर किक्स',
+    'throw_ins': 'अंदर की ओर फेंकना',
+    'fouls': 'बेईमानी',
+    'counter_attacks': 'जवाबी हमले',
+    'goal_kicks': 'गोल किक्स',
+    'top_season_stats': 'शीर्ष सीज़न आँकड़े',
+    'win_percentage_at_home': 'घर पर प्रतिशत जीतें',
+    'win_percentage_away': 'प्रतिशत दूर जीतें',
+    'both_teams_scored': 'दोनों टीमों ने स्कोर किया (%)',
+    'form': 'फॉर्म (दाईं ओर नवीनतम)',
   };
 }
