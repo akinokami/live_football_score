@@ -5,7 +5,6 @@ import 'package:live_football_score/models/h2h_model.dart';
 
 import '../../../utils/color_const.dart';
 import '../../widgets/custom_text.dart';
-import 'match_detail_screen.dart';
 
 class H2HWidget extends StatelessWidget {
   final H2HModel? h2hModel;

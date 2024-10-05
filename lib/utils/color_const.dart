@@ -34,3 +34,5 @@ Color greyLeague = const Color(0xFFeeeeee);
 Color appBarColor = const Color(0xFF001e28);
 Color tabColor = const Color(0xFF2c2c2c);
 Color tableTeamColor = const Color(0xFFf5faf4);
+Color statsColor = const Color(0xFFededed);
+Color stats2Color =const Color(0xFF0d2d39);

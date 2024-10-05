@@ -6,7 +6,9 @@ import 'package:live_football_score/utils/color_const.dart';
 import 'package:live_football_score/utils/dimen_const.dart';
 import 'package:live_football_score/views/screens/match_detail/h2h_widget.dart';
 import 'package:live_football_score/views/screens/match_detail/info_widget.dart';
+import 'package:live_football_score/views/screens/match_detail/lineups_widget.dart';
 import 'package:live_football_score/views/screens/match_detail/play_by_play_widget.dart';
+import 'package:live_football_score/views/screens/match_detail/stats_widget.dart';
 import 'package:live_football_score/views/screens/team/team_screen.dart';
 import 'package:live_football_score/views/widgets/custom_loading.dart';
 
@@ -454,11 +456,11 @@ class MatchDetailScreen extends StatelessWidget {
                               unselectedLabelColor: Colors.white,
                               tabs: [
                                 Tab(text: 'info'.tr),
-                                Tab(text: 'lineups'.tr),
+                                Tab(text: 'stats'.tr),
                                 Tab(text: 'play_by_play'.tr),
                                 Tab(text: 'table'.tr),
                                 Tab(text: 'h2h'.tr),
-                                Tab(text: 'stats'.tr),
+                                Tab(text: 'lineups'.tr),
                                 Tab(text: 'top_scorers'.tr),
                               ],
                             ),
@@ -479,7 +481,10 @@ class MatchDetailScreen extends StatelessWidget {
                                 matchDetailModel:
                                     matchDetailController.matchDetail.value,
                               ),
-                              Center(child: Text('Info Page')),
+                              StatsWidget(
+                                stats: matchDetailController
+                                    .matchDetail.value.stats,
+                              ),
                               PlayByPlayWidget(
                                 comms: matchDetailController
                                     .matchDetail.value.comms,
@@ -507,7 +512,7 @@ class MatchDetailScreen extends StatelessWidget {
                               H2HWidget(
                                 h2hModel: matchDetailController.h2hModel.value,
                               ),
-                              Center(child: Text('Players Page')),
+                              LineUpsWidget(),
                               LeagueTopScorersWidget(
                                 t: matchDetailController.t,
                               ),
