@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_football_score/models/match_detail_model.dart';
@@ -61,12 +60,7 @@ class InfoWidget extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.all(10.w),
-              child: CustomText(
-                text: (matchDetailModel?.notes ?? []).isNotEmpty
-                    ? (matchDetailModel?.notes?[0].text ?? '')
-                    : '',
-                maxLines: 3,
-              ),
+              child: Container(),
             ),
           ],
         ),

@@ -512,7 +512,10 @@ class MatchDetailScreen extends StatelessWidget {
                               H2HWidget(
                                 h2hModel: matchDetailController.h2hModel.value,
                               ),
-                              LineUpsWidget(),
+                              LineUpsWidget(
+                                lineup: matchDetailController
+                                    .matchDetail.value.lineup,
+                              ),
                               LeagueTopScorersWidget(
                                 t: matchDetailController.t,
                               ),
