@@ -13,7 +13,6 @@ class MatchDetailController extends GetxController {
   final isLoading1 = false.obs;
   Rx<MatchDetailModel> matchDetail = MatchDetailModel().obs;
   final matchId = "".obs;
-  final status = "".obs;
 
   Rx<TableModel> tableModel = TableModel().obs;
   Rx<Tables> table = Tables().obs;
@@ -23,7 +22,6 @@ class MatchDetailController extends GetxController {
   @override
   void onInit() {
     matchId.value = Get.arguments['matchId'];
-    status.value = Get.arguments['status'];
     getMatchesDetail(matchId.value);
     super.onInit();
   }

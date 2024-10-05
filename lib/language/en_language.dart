@@ -97,6 +97,7 @@ class EnLanguage {
     'live': 'Live',
     'league': 'League',
     'head_to_head_matches': 'Head To Head Matches',
-    'last_matches': 'Last Matches'
+    'last_matches': 'Last Matches',
+    'coach': 'Coach',
   };
 }

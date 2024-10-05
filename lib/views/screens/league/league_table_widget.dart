@@ -37,42 +37,42 @@ class LeagueTableWidget extends StatelessWidget {
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'P',
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'W',
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'D',
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'L',
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'GD',
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'PTS',
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
                   ),
                 ),
               ],

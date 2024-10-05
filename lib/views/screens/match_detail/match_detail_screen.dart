@@ -12,6 +12,7 @@ import 'package:live_football_score/views/widgets/custom_loading.dart';
 
 import '../../../utils/function.dart';
 import '../../widgets/custom_text.dart';
+import '../../widgets/show_hide_text.dart';
 import '../league/league_table_widget.dart';
 import '../league/league_top_scorers_widget.dart';
 
@@ -115,6 +116,32 @@ class MatchDetailScreen extends StatelessWidget {
                                               color: Colors.white,
                                               maxLines: 2,
                                               textAlign: TextAlign.center,
+                                              fontWeight: ((matchDetailController
+                                                                  .matchDetail
+                                                                  .value
+                                                                  .score ??
+                                                              [])
+                                                          .length >
+                                                      1)
+                                                  ? (matchDetailController
+                                                                  .matchDetail
+                                                                  .value
+                                                                  .status ==
+                                                              6) &&
+                                                          ((matchDetailController
+                                                                          .matchDetail
+                                                                          .value
+                                                                          .score?[
+                                                                      0] ??
+                                                                  0) >
+                                                              (matchDetailController
+                                                                      .matchDetail
+                                                                      .value
+                                                                      .score?[1] ??
+                                                                  0))
+                                                      ? FontWeight.bold
+                                                      : FontWeight.normal
+                                                  : FontWeight.normal,
                                             )
                                           ],
                                         ),
@@ -123,45 +150,196 @@ class MatchDetailScreen extends StatelessWidget {
                                     Column(
                                       children: [
                                         CustomText(
-                                            text: getTime(
-                                                "${matchDetailController.matchDetail.value.start ?? ''}"),
-                                            color: Colors.white),
+                                          text: getMatchDate(
+                                              "${matchDetailController.matchDetail.value.start ?? ''}"),
+                                          color: Colors.white,
+                                          fontSize: 11.sp,
+                                        ),
                                         Row(
                                           children: [
                                             CustomText(
                                               text: matchDetailController
-                                                  .matchDetail.value.ftScore?[0]
-                                                  .toString(),
-                                              color: Colors.white,
+                                                          .matchDetail
+                                                          .value
+                                                          .status ==
+                                                      1
+                                                  ? ''
+                                                  : (matchDetailController
+                                                                  .matchDetail
+                                                                  .value
+                                                                  .score ??
+                                                              [])
+                                                          .isNotEmpty
+                                                      ? "${matchDetailController.matchDetail.value.score?[0] ?? 0}"
+                                                      : '0',
+                                              color: matchDetailController
+                                                              .matchDetail
+                                                              .value
+                                                              .status ==
+                                                          2 ||
+                                                      matchDetailController
+                                                              .matchDetail
+                                                              .value
+                                                              .status ==
+                                                          3 ||
+                                                      matchDetailController
+                                                              .matchDetail
+                                                              .value
+                                                              .status ==
+                                                          10
+                                                  ? secondaryColor
+                                                  : Colors.white,
                                               fontSize: 16.sp,
                                               fontWeight: FontWeight.w500,
                                             ),
                                             CustomText(
                                               text: ' - ',
-                                              color: Colors.white,
+                                              color: matchDetailController
+                                                              .matchDetail
+                                                              .value
+                                                              .status ==
+                                                          2 ||
+                                                      matchDetailController
+                                                              .matchDetail
+                                                              .value
+                                                              .status ==
+                                                          3 ||
+                                                      matchDetailController
+                                                              .matchDetail
+                                                              .value
+                                                              .status ==
+                                                          10
+                                                  ? secondaryColor
+                                                  : Colors.white,
                                               fontSize: 16.sp,
                                               fontWeight: FontWeight.w500,
                                             ),
                                             CustomText(
                                               text: matchDetailController
-                                                  .matchDetail.value.ftScore?[1]
-                                                  .toString(),
-                                              color: Colors.white,
+                                                          .matchDetail
+                                                          .value
+                                                          .status ==
+                                                      1
+                                                  ? ''
+                                                  : (matchDetailController
+                                                                      .matchDetail
+                                                                      .value
+                                                                      .score ??
+                                                                  [])
+                                                              .length >
+                                                          1
+                                                      ? "${matchDetailController.matchDetail.value.score?[1] ?? 0}"
+                                                      : '0',
+                                              color: matchDetailController
+                                                              .matchDetail
+                                                              .value
+                                                              .status ==
+                                                          2 ||
+                                                      matchDetailController
+                                                              .matchDetail
+                                                              .value
+                                                              .status ==
+                                                          3 ||
+                                                      matchDetailController
+                                                              .matchDetail
+                                                              .value
+                                                              .status ==
+                                                          10
+                                                  ? secondaryColor
+                                                  : Colors.white,
                                               fontSize: 16.sp,
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ],
                                         ),
-                                        (matchDetailController.matchDetail.value
-                                                        .ftScore ??
-                                                    [])
-                                                .isNotEmpty
-                                            ? CustomText(
-                                                text: matchDetailController
-                                                    .status.value,
-                                                color: Colors.white,
+                                        // CustomText(
+                                        //   text: matchDetailController
+                                        //           .matchDetail
+                                        //           .value
+                                        //           .statusTxt ??
+                                        //       '',
+                                        //   color: Colors.white,
+                                        // ),
+                                        matchDetailController
+                                                    .matchDetail.value.status ==
+                                                2
+                                            ? Row(
+                                                children: [
+                                                  CustomText(
+                                                    text: '1st Half - ',
+                                                    color: secondaryColor,
+                                                  ),
+                                                  ShowHideText(
+                                                    text: matchDetailController
+                                                            .matchDetail
+                                                            .value
+                                                            .statusTxt ??
+                                                        '',
+                                                  ),
+                                                ],
                                               )
-                                            : Container(),
+                                            : matchDetailController.matchDetail
+                                                        .value.status ==
+                                                    3
+                                                ? Row(
+                                                    children: [
+                                                      CustomText(
+                                                        text: '2nd Half - ',
+                                                        color: secondaryColor,
+                                                      ),
+                                                      ShowHideText(
+                                                        text:
+                                                            matchDetailController
+                                                                    .matchDetail
+                                                                    .value
+                                                                    .statusTxt ??
+                                                                '',
+                                                      ),
+                                                    ],
+                                                  )
+                                                : matchDetailController
+                                                            .matchDetail
+                                                            .value
+                                                            .status ==
+                                                        10
+                                                    ? CustomText(
+                                                        text:
+                                                            matchDetailController
+                                                                    .matchDetail
+                                                                    .value
+                                                                    .statusTxt ??
+                                                                '',
+                                                        color: secondaryColor,
+                                                      )
+                                                    : matchDetailController
+                                                                .matchDetail
+                                                                .value
+                                                                .status ==
+                                                            6
+                                                        ? const CustomText(
+                                                            text: 'Finished',
+                                                            color: Colors.white,
+                                                          )
+                                                        : matchDetailController
+                                                                    .matchDetail
+                                                                    .value
+                                                                    .status ==
+                                                                17
+                                                            ? const CustomText(
+                                                                text:
+                                                                    'Abandoned',
+                                                                color: Colors
+                                                                    .white,
+                                                              )
+                                                            : CustomText(
+                                                                text: matchDetailController
+                                                                        .matchDetail
+                                                                        .value
+                                                                        .statusTxt ??
+                                                                    '',
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
                                       ],
                                     ),
                                     InkWell(
@@ -212,6 +390,32 @@ class MatchDetailScreen extends StatelessWidget {
                                               color: Colors.white,
                                               maxLines: 2,
                                               textAlign: TextAlign.center,
+                                              fontWeight: ((matchDetailController
+                                                                  .matchDetail
+                                                                  .value
+                                                                  .score ??
+                                                              [])
+                                                          .length >
+                                                      1)
+                                                  ? (matchDetailController
+                                                                  .matchDetail
+                                                                  .value
+                                                                  .status ==
+                                                              6) &&
+                                                          ((matchDetailController
+                                                                          .matchDetail
+                                                                          .value
+                                                                          .score?[
+                                                                      1] ??
+                                                                  0) >
+                                                              (matchDetailController
+                                                                      .matchDetail
+                                                                      .value
+                                                                      .score?[0] ??
+                                                                  0))
+                                                      ? FontWeight.bold
+                                                      : FontWeight.normal
+                                                  : FontWeight.normal,
                                             )
                                           ],
                                         ),

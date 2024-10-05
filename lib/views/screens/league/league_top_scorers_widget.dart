@@ -7,6 +7,7 @@ import 'package:live_football_score/utils/color_const.dart';
 import 'package:live_football_score/utils/dimen_const.dart';
 
 import '../../widgets/custom_text.dart';
+import '../player/player_screen.dart';
 
 class LeagueTopScorersWidget extends StatelessWidget {
   final List<T>? t;
@@ -39,6 +40,7 @@ class LeagueTopScorersWidget extends StatelessWidget {
                       child: CustomText(
                         text: 'pen'.tr,
                         textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(
@@ -46,6 +48,7 @@ class LeagueTopScorersWidget extends StatelessWidget {
                       child: CustomText(
                         text: 'gs'.tr,
                         textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -60,49 +63,56 @@ class LeagueTopScorersWidget extends StatelessWidget {
                   itemBuilder: ((context, index) {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 5.h),
-                      child: Row(
-                        children: [
-                          kSizedBoxW5,
-                          SizedBox(
-                            width: 1.sw * 0.05,
-                            child: CustomText(
-                              text: "${t?[index].ranking ?? ''}",
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(() => const PlayerScreen(), arguments: {
+                            "playerId": t?[index].id,
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            kSizedBoxW5,
+                            SizedBox(
+                              width: 1.sw * 0.05,
+                              child: CustomText(
+                                text: "${t?[index].ranking ?? ''}",
+                              ),
                             ),
-                          ),
-                          Icon(
-                            Icons.account_circle,
-                            size: 30.sp,
-                            color: secondaryColor,
-                          ),
-                          kSizedBoxW5,
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CustomText(
-                                    text: t?[index].participantName ?? ''),
-                                CustomText(
-                                  text: t?[index].team?.name ?? '',
-                                  color: Colors.black54,
-                                ),
-                              ],
+                            Icon(
+                              Icons.account_circle,
+                              size: 30.sp,
+                              color: secondaryColor,
                             ),
-                          ),
-                          SizedBox(
-                            width: 1.sw * 0.10,
-                            child: CustomText(
-                              text: "${t?[index].penalties ?? 0}",
-                              textAlign: TextAlign.center,
+                            kSizedBoxW5,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomText(
+                                      text: t?[index].participantName ?? ''),
+                                  CustomText(
+                                    text: t?[index].team?.name ?? '',
+                                    color: Colors.black54,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 1.sw * 0.10,
-                            child: CustomText(
-                              text: "${t?[index].goals ?? 0}",
-                              textAlign: TextAlign.center,
+                            SizedBox(
+                              width: 1.sw * 0.10,
+                              child: CustomText(
+                                text: "${t?[index].penalties ?? 0}",
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: 1.sw * 0.10,
+                              child: CustomText(
+                                text: "${t?[index].goals ?? 0}",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   }),

@@ -95,6 +95,7 @@ class ViLanguage {
     'live': 'Sống',
     'league': 'Liên minh',
     'head_to_head_matches': 'Trận đấu đối đầu',
-    'last_matches': 'Trận đấu cuối cùng'
+    'last_matches': 'Trận đấu cuối cùng',
+    'coach': 'Huấn luyện viên',
   };
 }

@@ -5,6 +5,7 @@ import 'package:live_football_score/models/h2h_model.dart';
 
 import '../../../utils/color_const.dart';
 import '../../widgets/custom_text.dart';
+import 'match_detail_screen.dart';
 
 class H2HWidget extends StatelessWidget {
   final H2HModel? h2hModel;
@@ -23,7 +24,10 @@ class H2HWidget extends StatelessWidget {
                 color: greyLeague,
                 padding: EdgeInsets.only(left: 10.w),
                 alignment: Alignment.centerLeft,
-                child: CustomText(text: 'head_to_head_matches'.tr),
+                child: CustomText(
+                  text: 'head_to_head_matches'.tr,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               ListView.builder(
                 shrinkWrap: true,
@@ -32,54 +36,186 @@ class H2HWidget extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.all(10.w),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.sports_soccer,
-                                  size: 18.sp,
-                                  color: secondaryColor,
+                      InkWell(
+                        onTap: () {
+                          // Get.to(() => const MatchDetailScreen(), arguments: {
+                          //   "matchId": h2hModel?.h2h?.matches?[index].id,
+                          // });
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(10.w),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.sports_soccer,
+                                          size: 18.sp,
+                                          color: secondaryColor,
+                                        ),
+                                        SizedBox(
+                                          width: 10.w,
+                                        ),
+                                        CustomText(
+                                          text: (h2hModel?.h2h?.matches?[index]
+                                                          .teams ??
+                                                      [])
+                                                  .isNotEmpty
+                                              ? (h2hModel?.h2h?.matches?[index]
+                                                      .teams?[0].name ??
+                                                  '')
+                                              : '',
+                                          fontWeight: (h2hModel
+                                                              ?.h2h
+                                                              ?.matches?[index]
+                                                              .score ??
+                                                          [])
+                                                      .length >
+                                                  1
+                                              ? (h2hModel?.h2h?.matches?[index]
+                                                              .status ==
+                                                          6) &&
+                                                      ((h2hModel
+                                                                  ?.h2h
+                                                                  ?.matches?[
+                                                                      index]
+                                                                  .score?[0] ??
+                                                              0) >
+                                                          (h2hModel
+                                                                  ?.h2h
+                                                                  ?.matches?[
+                                                                      index]
+                                                                  .score?[1] ??
+                                                              0))
+                                                  ? FontWeight.bold
+                                                  : FontWeight.normal
+                                              : FontWeight.normal,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.sports_soccer,
+                                          size: 18.sp,
+                                          color: secondaryColor,
+                                        ),
+                                        SizedBox(
+                                          width: 10.w,
+                                        ),
+                                        CustomText(
+                                          text: (h2hModel?.h2h?.matches?[index]
+                                                              .teams ??
+                                                          [])
+                                                      .length >
+                                                  1
+                                              ? (h2hModel?.h2h?.matches?[index]
+                                                      .teams?[1].name ??
+                                                  '')
+                                              : '',
+                                          fontWeight: (h2hModel
+                                                              ?.h2h
+                                                              ?.matches?[index]
+                                                              .score ??
+                                                          [])
+                                                      .length >
+                                                  1
+                                              ? (h2hModel?.h2h?.matches?[index]
+                                                              .status ==
+                                                          6) &&
+                                                      ((h2hModel
+                                                                  ?.h2h
+                                                                  ?.matches?[
+                                                                      index]
+                                                                  .score?[1] ??
+                                                              0) >
+                                                          (h2hModel
+                                                                  ?.h2h
+                                                                  ?.matches?[
+                                                                      index]
+                                                                  .score?[0] ??
+                                                              0))
+                                                  ? FontWeight.bold
+                                                  : FontWeight.normal
+                                              : FontWeight.normal,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                CustomText(
-                                  text: (h2hModel?.h2h?.matches?[index].teams ??
-                                              [])
-                                          .isNotEmpty
-                                      ? (h2hModel?.h2h?.matches?[index]
-                                              .teams?[0].name ??
-                                          '')
-                                      : '',
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.sports_soccer,
-                                  size: 18.sp,
-                                  color: secondaryColor,
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                CustomText(
-                                  text: (h2hModel?.h2h?.matches?[index].teams ??
-                                                  [])
-                                              .length >
-                                          1
-                                      ? (h2hModel?.h2h?.matches?[index]
-                                              .teams?[1].name ??
-                                          '')
-                                      : '',
-                                ),
-                              ],
-                            ),
-                          ],
+                              ),
+                              const CustomText(
+                                text: 'FT',
+                              ),
+                              SizedBox(
+                                width: 15.w,
+                              ),
+                              Column(
+                                children: [
+                                  CustomText(
+                                    text: (h2hModel?.h2h?.matches?[index]
+                                                    .score ??
+                                                [])
+                                            .isNotEmpty
+                                        ? "${h2hModel?.h2h?.matches?[index].score?[0] ?? ''}"
+                                        : '',
+                                    color: Colors.black,
+                                    fontWeight: (h2hModel?.h2h?.matches?[index]
+                                                        .score ??
+                                                    [])
+                                                .length >
+                                            1
+                                        ? (h2hModel?.h2h?.matches?[index]
+                                                        .status ==
+                                                    6) &&
+                                                ((h2hModel?.h2h?.matches?[index]
+                                                            .score?[0] ??
+                                                        0) >=
+                                                    (h2hModel
+                                                            ?.h2h
+                                                            ?.matches?[index]
+                                                            .score?[1] ??
+                                                        0))
+                                            ? FontWeight.bold
+                                            : FontWeight.normal
+                                        : FontWeight.normal,
+                                  ),
+                                  CustomText(
+                                    text: (h2hModel?.h2h?.matches?[index]
+                                                        .teams ??
+                                                    [])
+                                                .length >
+                                            1
+                                        ? "${h2hModel?.h2h?.matches?[index].score?[1] ?? ''}"
+                                        : '',
+                                    color: Colors.black,
+                                    fontWeight: (h2hModel?.h2h?.matches?[index]
+                                                        .score ??
+                                                    [])
+                                                .length >
+                                            1
+                                        ? (h2hModel?.h2h?.matches?[index]
+                                                        .status ==
+                                                    6) &&
+                                                ((h2hModel?.h2h?.matches?[index]
+                                                            .score?[1] ??
+                                                        0) >=
+                                                    (h2hModel
+                                                            ?.h2h
+                                                            ?.matches?[index]
+                                                            .score?[0] ??
+                                                        0))
+                                            ? FontWeight.bold
+                                            : FontWeight.normal
+                                        : FontWeight.normal,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       if (index != (h2hModel?.h2h?.matches?.length ?? 0) - 1)
@@ -105,8 +241,10 @@ class H2HWidget extends StatelessWidget {
                     padding: EdgeInsets.only(left: 10.w),
                     alignment: Alignment.centerLeft,
                     child: CustomText(
-                        text:
-                            "${'last_matches'.tr} : ${h2hModel?.teams?[index].name}"),
+                      text:
+                          "${'last_matches'.tr} : ${h2hModel?.teams?[index].name}",
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   ListView.builder(
                     shrinkWrap: true,
@@ -115,66 +253,244 @@ class H2HWidget extends StatelessWidget {
                     itemBuilder: (context, matchIndex) {
                       return Column(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.all(10.w),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.sports_soccer,
-                                      size: 18.sp,
-                                      color: secondaryColor,
-                                    ),
-                                    SizedBox(
-                                      width: 10.w,
-                                    ),
-                                    CustomText(
-                                      text: (h2hModel
-                                                      ?.teams?[index]
-                                                      .matches?[matchIndex]
-                                                      .teams ??
-                                                  [])
-                                              .isNotEmpty
-                                          ? (h2hModel
-                                                  ?.teams?[index]
-                                                  .matches?[matchIndex]
-                                                  .teams?[0]
-                                                  .name ??
-                                              '')
-                                          : '',
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.sports_soccer,
-                                      size: 18.sp,
-                                      color: secondaryColor,
-                                    ),
-                                    SizedBox(
-                                      width: 10.w,
-                                    ),
-                                    CustomText(
-                                      text: (h2hModel
+                          InkWell(
+                            onTap: () {
+                              // Get.to(() => const MatchDetailScreen(),
+                              //     arguments: {
+                              //       "matchId":
+                              //           h2hModel?.h2h?.matches?[index].id,
+                              //     });
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.all(10.w),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.sports_soccer,
+                                              size: 18.sp,
+                                              color: secondaryColor,
+                                            ),
+                                            SizedBox(
+                                              width: 10.w,
+                                            ),
+                                            CustomText(
+                                              text: (h2hModel
+                                                              ?.teams?[index]
+                                                              .matches?[
+                                                                  matchIndex]
+                                                              .teams ??
+                                                          [])
+                                                      .isNotEmpty
+                                                  ? (h2hModel
                                                           ?.teams?[index]
                                                           .matches?[matchIndex]
-                                                          .teams ??
-                                                      [])
-                                                  .length >
-                                              1
-                                          ? (h2hModel
-                                                  ?.teams?[index]
-                                                  .matches?[matchIndex]
-                                                  .teams?[1]
-                                                  .name ??
-                                              '')
-                                          : '',
+                                                          .teams?[0]
+                                                          .name ??
+                                                      '')
+                                                  : '',
+                                              fontWeight: (h2hModel
+                                                                  ?.teams?[
+                                                                      index]
+                                                                  .matches?[
+                                                                      matchIndex]
+                                                                  .score ??
+                                                              [])
+                                                          .length >
+                                                      1
+                                                  ? (h2hModel
+                                                                  ?.teams?[
+                                                                      index]
+                                                                  .matches?[
+                                                                      matchIndex]
+                                                                  .status ==
+                                                              6) &&
+                                                          ((h2hModel
+                                                                          ?.teams?[
+                                                                              index]
+                                                                          .matches?[
+                                                                              matchIndex]
+                                                                          .score?[
+                                                                      0] ??
+                                                                  0) >
+                                                              (h2hModel
+                                                                      ?.teams?[
+                                                                          index]
+                                                                      .matches?[
+                                                                          matchIndex]
+                                                                      .score?[1] ??
+                                                                  0))
+                                                      ? FontWeight.bold
+                                                      : FontWeight.normal
+                                                  : FontWeight.normal,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.sports_soccer,
+                                              size: 18.sp,
+                                              color: secondaryColor,
+                                            ),
+                                            SizedBox(
+                                              width: 10.w,
+                                            ),
+                                            CustomText(
+                                              text: (h2hModel
+                                                                  ?.teams?[
+                                                                      index]
+                                                                  .matches?[
+                                                                      matchIndex]
+                                                                  .teams ??
+                                                              [])
+                                                          .length >
+                                                      1
+                                                  ? (h2hModel
+                                                          ?.teams?[index]
+                                                          .matches?[matchIndex]
+                                                          .teams?[1]
+                                                          .name ??
+                                                      '')
+                                                  : '',
+                                              fontWeight: (h2hModel
+                                                                  ?.teams?[
+                                                                      index]
+                                                                  .matches?[
+                                                                      matchIndex]
+                                                                  .score ??
+                                                              [])
+                                                          .length >
+                                                      1
+                                                  ? (h2hModel
+                                                                  ?.teams?[
+                                                                      index]
+                                                                  .matches?[
+                                                                      matchIndex]
+                                                                  .status ==
+                                                              6) &&
+                                                          ((h2hModel
+                                                                          ?.teams?[
+                                                                              index]
+                                                                          .matches?[
+                                                                              matchIndex]
+                                                                          .score?[
+                                                                      1] ??
+                                                                  0) >
+                                                              (h2hModel
+                                                                      ?.teams?[
+                                                                          index]
+                                                                      .matches?[
+                                                                          matchIndex]
+                                                                      .score?[0] ??
+                                                                  0))
+                                                      ? FontWeight.bold
+                                                      : FontWeight.normal
+                                                  : FontWeight.normal,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                  const CustomText(
+                                    text: 'FT',
+                                  ),
+                                  SizedBox(
+                                    width: 15.w,
+                                  ),
+                                  Column(
+                                    children: [
+                                      CustomText(
+                                        text: (h2hModel
+                                                        ?.teams?[index]
+                                                        .matches?[matchIndex]
+                                                        .score ??
+                                                    [])
+                                                .isNotEmpty
+                                            ? "${h2hModel?.teams?[index].matches?[matchIndex].score?[0] ?? ''}"
+                                            : '',
+                                        color: Colors.black,
+                                        fontWeight: (h2hModel
+                                                            ?.teams?[index]
+                                                            .matches?[
+                                                                matchIndex]
+                                                            .score ??
+                                                        [])
+                                                    .length >
+                                                1
+                                            ? (h2hModel
+                                                            ?.teams?[index]
+                                                            .matches?[
+                                                                matchIndex]
+                                                            .status ==
+                                                        6) &&
+                                                    ((h2hModel
+                                                                ?.teams?[index]
+                                                                .matches?[
+                                                                    matchIndex]
+                                                                .score?[0] ??
+                                                            0) >=
+                                                        (h2hModel
+                                                                ?.teams?[index]
+                                                                .matches?[
+                                                                    matchIndex]
+                                                                .score?[1] ??
+                                                            0))
+                                                ? FontWeight.bold
+                                                : FontWeight.normal
+                                            : FontWeight.normal,
+                                      ),
+                                      CustomText(
+                                        text: (h2hModel
+                                                            ?.teams?[index]
+                                                            .matches?[
+                                                                matchIndex]
+                                                            .teams ??
+                                                        [])
+                                                    .length >
+                                                1
+                                            ? "${h2hModel?.teams?[index].matches?[matchIndex].score?[1] ?? ''}"
+                                            : '',
+                                        color: Colors.black,
+                                        fontWeight: (h2hModel
+                                                            ?.teams?[index]
+                                                            .matches?[
+                                                                matchIndex]
+                                                            .score ??
+                                                        [])
+                                                    .length >
+                                                1
+                                            ? (h2hModel
+                                                            ?.teams?[index]
+                                                            .matches?[
+                                                                matchIndex]
+                                                            .status ==
+                                                        6) &&
+                                                    ((h2hModel
+                                                                ?.teams?[index]
+                                                                .matches?[
+                                                                    matchIndex]
+                                                                .score?[1] ??
+                                                            0) >=
+                                                        (h2hModel
+                                                                ?.teams?[index]
+                                                                .matches?[
+                                                                    matchIndex]
+                                                                .score?[0] ??
+                                                            0))
+                                                ? FontWeight.bold
+                                                : FontWeight.normal
+                                            : FontWeight.normal,
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           if (matchIndex !=

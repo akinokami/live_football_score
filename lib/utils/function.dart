@@ -21,3 +21,10 @@ String getDate(String sDate) {
   );
   return DateFormat('d MMMM yyyy, EEEE').format(parsedDate);
 }
+
+String getMatchDate(String sDate) {
+  DateTime parsedDate = DateTime.parse(
+    '${sDate.substring(0, 4)}-${sDate.substring(4, 6)}-${sDate.substring(6, 8)}T${sDate.substring(8, 10)}:${sDate.substring(10, 12)}:${sDate.substring(12, 14)}',
+  );
+  return DateFormat('dd-MM-yyyy HH:mm').format(parsedDate);
+}

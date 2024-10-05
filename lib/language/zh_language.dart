@@ -97,6 +97,7 @@ class ZhLanguage {
     'live': '居住',
     'league': '聯盟',
     'head_to_head_matches': '頭對頭比賽',
-    'last_matches': '最後一場比賽'
+    'last_matches': '最後一場比賽',
+    'coach': '教練',
   };
 }

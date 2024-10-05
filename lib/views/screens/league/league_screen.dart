@@ -127,9 +127,11 @@ class LeagueScreen extends StatelessWidget {
                                 t: leagueController.t,
                               ),
                               LeagueTandPWidget(
+                                type: 'p',
                                 estats: leagueController.league.value.epstats,
                               ),
                               LeagueTandPWidget(
+                                type: 't',
                                 estats: leagueController.league.value.estats,
                               ),
                             ],

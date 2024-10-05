@@ -48,6 +48,7 @@ dependencies:
   loading_animation_widget: ^1.2.1
   percent_indicator: ^4.2.3
   sticky_headers: ^0.3.0+2
+  
 
 dev_dependencies:
   flutter_test:

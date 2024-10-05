@@ -97,6 +97,7 @@ class HiLanguage {
     'live': 'रहना',
     'league': 'संघ',
     'head_to_head_matches': 'हेड टू हेड मैच',
-    'last_matches': 'अंतिम मैच'
+    'last_matches': 'अंतिम मैच',
+    'coach': 'प्रशिक्षक',
   };
 }

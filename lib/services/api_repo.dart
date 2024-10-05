@@ -144,6 +144,9 @@ class ApiRepo {
     try {
       final response = await apiUtils.get(
           url: "${ApiConstant.baseUrl1}en/stage/ts/soccer/$leagueId");
+      if (response.data == "{}") {
+        return [];
+      }
       final t = response.data['T'] as List;
       return t.map((item) => T.fromJson(item)).toList();
     } catch (e) {
