@@ -1,7 +1,9 @@
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_football_score/controller/live_controller.dart';
+import 'package:live_football_score/utils/dimen_const.dart';
 import 'package:live_football_score/views/screens/league/league_screen.dart';
 import 'package:live_football_score/views/widgets/custom_loading.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -51,11 +53,63 @@ class LiveScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: CustomText(
-                                    text:
-                                        "${liveController.matches[index].cName} : ${liveController.matches[index].stName}",
-                                    fontWeight: FontWeight.w500,
-                                    maxLines: 2,
+                                  child: Row(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(100.w),
+                                        child: FastCachedImage(
+                                          width: 16.w,
+                                          height: 16.w,
+                                          url:
+                                              'https://api.snaptech.dev/flags/2/${liveController.matches[index].cId}/4x3.png',
+                                          fit: BoxFit.cover,
+                                          fadeInDuration:
+                                              const Duration(seconds: 1),
+                                          errorBuilder: (context, exception,
+                                                  stacktrace) =>
+                                              SizedBox(
+                                                  width: 16.w,
+                                                  height: 16.w,
+                                                  child: Icon(
+                                                    Icons.sports_soccer,
+                                                    color: secondaryColor,
+                                                    size: 18.sp,
+                                                  )),
+                                          loadingBuilder: (context, progress) {
+                                            return SizedBox(
+                                              width: 16.w,
+                                              height: 16.w,
+                                              child: Stack(
+                                                alignment: Alignment.center,
+                                                children: [
+                                                  if (progress.isDownloading &&
+                                                      progress.totalBytes !=
+                                                          null)
+                                                    SizedBox(
+                                                        width: 16.w,
+                                                        height: 16.w,
+                                                        child: CircularProgressIndicator(
+                                                            color: Colors.green,
+                                                            value: progress
+                                                                .progressPercentage
+                                                                .value)),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      kSizedBoxW10,
+                                      Expanded(
+                                        child: CustomText(
+                                          text:
+                                              "${liveController.matches[index].cName} : ${liveController.matches[index].stName}",
+                                          fontWeight: FontWeight.w500,
+                                          maxLines: 2,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 CustomText(

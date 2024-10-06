@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_football_score/models/team_model.dart';
+import 'package:live_football_score/utils/dimen_const.dart';
 
 import '../../../utils/color_const.dart';
 import '../../widgets/custom_text.dart';
@@ -33,11 +34,56 @@ class TeamResultsWidget extends StatelessWidget {
                     color: greyLeague,
                     padding: EdgeInsets.only(left: 10.w),
                     alignment: Alignment.centerLeft,
-                    child: CustomText(
-                      text:
-                          "${results?[index].cName} : ${results?[index].stName}",
-                      fontWeight: FontWeight.w500,
-                      maxLines: 2,
+                    child: Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(100.w),
+                          child: FastCachedImage(
+                            width: 16.w,
+                            height: 16.w,
+                            url:
+                                'https://api.snaptech.dev/flags/2/${results?[index].cId}/4x3.png',
+                            fit: BoxFit.cover,
+                            fadeInDuration: const Duration(seconds: 1),
+                            errorBuilder: (context, exception, stacktrace) =>
+                                SizedBox(
+                                    width: 16.w,
+                                    height: 16.w,
+                                    child: Icon(
+                                      Icons.sports_soccer,
+                                      color: secondaryColor,
+                                      size: 18.sp,
+                                    )),
+                            loadingBuilder: (context, progress) {
+                              return SizedBox(
+                                width: 16.w,
+                                height: 16.w,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    if (progress.isDownloading &&
+                                        progress.totalBytes != null)
+                                      SizedBox(
+                                          width: 16.w,
+                                          height: 16.w,
+                                          child: CircularProgressIndicator(
+                                              color: Colors.green,
+                                              value: progress
+                                                  .progressPercentage.value)),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        kSizedBoxW10,
+                        CustomText(
+                          text:
+                              "${results?[index].cName} : ${results?[index].stName}",
+                          fontWeight: FontWeight.w500,
+                          maxLines: 2,
+                        ),
+                      ],
                     ),
                   ),
                 ),

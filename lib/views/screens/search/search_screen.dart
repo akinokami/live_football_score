@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,7 @@ import '../../../utils/dimen_const.dart';
 import '../../widgets/custom_loading.dart';
 import '../../widgets/custom_text.dart';
 import '../../widgets/custom_text_form_field.dart';
-import '../../widgets/match_card_widget.dart';
+import '../../widgets/match_search_card_widget.dart';
 import '../league/league_screen.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -72,11 +73,102 @@ class SearchScreen extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Expanded(
-                                        child: CustomText(
-                                          text:
-                                              "${searchController.searchMatches[index].cName} : ${searchController.searchMatches[index].stName}",
-                                          fontWeight: FontWeight.w500,
-                                          maxLines: 2,
+                                        child: Row(
+                                          children: [
+                                            // ClipRRect(
+                                            //   borderRadius:
+                                            //       BorderRadius.circular(100.w),
+                                            //   child: FastCachedImage(
+                                            //     width: 16.w,
+                                            //     height: 16.w,
+                                            //     url:
+                                            //         'https://api.snaptech.dev/flags/2/${searchController.searchMatches[index].cId}/4x3.png',
+                                            //     fit: BoxFit.cover,
+                                            //     fadeInDuration:
+                                            //         const Duration(seconds: 1),
+                                            //     errorBuilder: (context,
+                                            //             exception,
+                                            //             stacktrace) =>
+                                            //         SizedBox(
+                                            //             width: 16.w,
+                                            //             height: 16.w,
+                                            //             child: Icon(
+                                            //               Icons.sports_soccer,
+                                            //               color: secondaryColor,
+                                            //               size: 18.sp,
+                                            //             )),
+                                            //     loadingBuilder:
+                                            //         (context, progress) {
+                                            //       return SizedBox(
+                                            //         width: 16.w,
+                                            //         height: 16.w,
+                                            //         child: Stack(
+                                            //           alignment:
+                                            //               Alignment.center,
+                                            //           children: [
+                                            //             if (progress
+                                            //                     .isDownloading &&
+                                            //                 progress.totalBytes !=
+                                            //                     null)
+                                            //               SizedBox(
+                                            //                   width: 16.w,
+                                            //                   height: 16.w,
+                                            //                   child: CircularProgressIndicator(
+                                            //                       color: Colors
+                                            //                           .green,
+                                            //                       value: progress
+                                            //                           .progressPercentage
+                                            //                           .value)),
+                                            //           ],
+                                            //         ),
+                                            //       );
+                                            //     },
+                                            //   ),
+                                            // ),
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(100.w),
+                                              child: Image.network(
+                                                'https://api.snaptech.dev/flags/2/${searchController.searchMatches[index].cId}/4x3.png',
+                                                width: 16.w,
+                                                height: 16.w,
+                                                fit: BoxFit.cover,
+                                                errorBuilder: (context, error,
+                                                    stackTrace) {
+                                                  return SizedBox(
+                                                    width: 16.w,
+                                                    height: 16.w,
+                                                    child: Icon(
+                                                      Icons.sports_soccer,
+                                                      color: secondaryColor,
+                                                      size: 18.sp,
+                                                    ),
+                                                  );
+                                                },
+                                                // loadingBuilder: (context, child,
+                                                //     loadingProgress) {
+                                                //   return SizedBox(
+                                                //     width: 16.w,
+                                                //     height: 16.w,
+                                                //     child: Icon(
+                                                //       Icons.sports_soccer,
+                                                //       color: secondaryColor,
+                                                //       size: 18.sp,
+                                                //     ),
+                                                //   );
+                                                // },
+                                              ),
+                                            ),
+                                            kSizedBoxW10,
+                                            Expanded(
+                                              child: CustomText(
+                                                text:
+                                                    "${searchController.searchMatches[index].cName} : ${searchController.searchMatches[index].stName}",
+                                                fontWeight: FontWeight.w500,
+                                                maxLines: 2,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                       CustomText(
@@ -94,7 +186,7 @@ class SearchScreen extends StatelessWidget {
                                   itemBuilder: (context, index1) {
                                     return Column(
                                       children: [
-                                        MatchCardWidget(
+                                        MatchSearchCardWidget(
                                           matches: searchController
                                               .searchMatches[index]
                                               .matches?[index1],
