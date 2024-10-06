@@ -108,5 +108,8 @@ class HiLanguage {
     'win_percentage_away': 'प्रतिशत दूर जीतें',
     'both_teams_scored': 'दोनों टीमों ने स्कोर किया (%)',
     'form': 'फॉर्म (दाईं ओर नवीनतम)',
+    'starting_lineups': 'आरंभिक लाइनअप',
+    'substituted_players': 'स्थानापन्न खिलाड़ी',
+    'injured': 'घायल',
   };
 }

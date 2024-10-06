@@ -108,5 +108,8 @@ class ZhLanguage {
     'win_percentage_away': '客場獲勝百分比',
     'both_teams_scored': '兩隊均得分 (%)',
     'form': '表格（最新的在右邊）',
+    'starting_lineups': '先發陣容',
+    'substituted_players': '替補球員',
+    'injured': '受傷',
   };
 }

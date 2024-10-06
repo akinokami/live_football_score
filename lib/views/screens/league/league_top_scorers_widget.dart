@@ -73,7 +73,7 @@ class LeagueTopScorersWidget extends StatelessWidget {
                           children: [
                             kSizedBoxW5,
                             SizedBox(
-                              width: 1.sw * 0.05,
+                              width: 1.sw * 0.07,
                               child: CustomText(
                                 text: "${t?[index].ranking ?? ''}",
                               ),

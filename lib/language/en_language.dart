@@ -108,5 +108,8 @@ class EnLanguage {
     'win_percentage_away': 'Win Percentage Away',
     'both_teams_scored': 'Both Teams Scored (%)',
     'form': 'Form (most recent at right)',
+    'starting_lineups': 'Starting Lineups',
+    'substituted_players': 'Substituted Player',
+    'injured': 'Injured',
   };
 }

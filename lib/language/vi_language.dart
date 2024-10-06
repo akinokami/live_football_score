@@ -106,5 +106,8 @@ class ViLanguage {
     'win_percentage_away': 'Tỷ lệ thắng trên sân khách',
     'both_teams_scored': 'Cả hai đội đều ghi bàn (%)',
     'form': 'Mẫu (mới nhất bên phải)',
+    'starting_lineups': 'Đội hình xuất phát',
+    'substituted_players': 'Cầu thủ dự bị',
+    'injured': 'Bị thương',
   };
 }
