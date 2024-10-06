@@ -111,6 +111,34 @@ class InfoWidget extends StatelessWidget {
                                               ),
                                             ),
 
+                                            ///Penalty Goal
+                                            Visibility(
+                                              visible: event["type"] == 5,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 5.w),
+                                                child: Icon(
+                                                  Icons.sports_soccer,
+                                                  color: secondaryColor,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///Penalty Missed
+                                            Visibility(
+                                              visible: event["type"] == 6,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 5.w),
+                                                child: Icon(
+                                                  Icons.cancel,
+                                                  color: Colors.red,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
                                             ///Change people
                                             Visibility(
                                               visible: event["type"] == 1,
@@ -172,33 +200,57 @@ class InfoWidget extends StatelessWidget {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: [
-                                                CustomText(
-                                                  text: '${event["pl_name"]}',
-                                                  color: event["type"] == 4
-                                                      ? secondaryColor
-                                                      : Colors.black,
+                                                SizedBox(
+                                                  width: 1.sw * 0.35,
+                                                  child: CustomText(
+                                                    text: '${event["pl_name"]}',
+                                                    color: event["type"] == 4 ||
+                                                            event["type"] == 5
+                                                        ? secondaryColor
+                                                        : Colors.black,
+                                                    isEllip: true,
+                                                  ),
                                                 ),
                                                 Visibility(
                                                   visible: event["assists"]
                                                       .isNotEmpty,
-                                                  child: CustomText(
-                                                    text: event["assists"]
-                                                            .isNotEmpty
-                                                        ? '${event["assists"].map((assist) => assist["pl_name"]).join(", ")}'
-                                                        : '',
+                                                  child: SizedBox(
+                                                    width: 1.sw * 0.35,
+                                                    child: CustomText(
+                                                      text: event["assists"]
+                                                              .isNotEmpty
+                                                          ? '${event["assists"].map((assist) => assist["pl_name"]).join(", ")}'
+                                                          : '',
+                                                      isEllip: true,
+                                                    ),
                                                   ),
                                                 ),
                                                 Visibility(
                                                   visible: event["type"] == 1,
-                                                  child: CustomText(
-                                                    text:
-                                                        '${event["pl_name_o"]}',
+                                                  child: SizedBox(
+                                                    width: 1.sw * 0.35,
+                                                    child: CustomText(
+                                                      text:
+                                                          '${event["pl_name_o"]}',
+                                                    ),
                                                   ),
                                                 ),
                                                 Visibility(
                                                   visible: event["type"] == 26,
                                                   child: const CustomText(
                                                     text: 'VAR - No Goal',
+                                                  ),
+                                                ),
+                                                Visibility(
+                                                  visible: event["type"] == 5,
+                                                  child: const CustomText(
+                                                    text: 'Penalty',
+                                                  ),
+                                                ),
+                                                Visibility(
+                                                  visible: event["type"] == 6,
+                                                  child: const CustomText(
+                                                    text: 'Missed Penalty',
                                                   ),
                                                 )
                                               ],
@@ -209,7 +261,8 @@ class InfoWidget extends StatelessWidget {
                                     ),
                                     CustomText(
                                       text: "${event["min"]} '",
-                                      color: event["type"] == 4
+                                      color: event["type"] == 4 ||
+                                              event["type"] == 5
                                           ? secondaryColor
                                           : Colors.black,
                                     ),
@@ -229,32 +282,63 @@ class InfoWidget extends StatelessWidget {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: [
-                                                CustomText(
-                                                  text: '${event["pl_name"]}',
-                                                  color: event["type"] == 4
-                                                      ? secondaryColor
-                                                      : Colors.black,
+                                                SizedBox(
+                                                  width: 1.sw * 0.35,
+                                                  child: CustomText(
+                                                    text: '${event["pl_name"]}',
+                                                    color: event["type"] == 4 ||
+                                                            event["type"] == 5
+                                                        ? secondaryColor
+                                                        : Colors.black,
+                                                    isEllip: true,
+                                                    textAlign: TextAlign.right,
+                                                  ),
                                                 ),
                                                 Visibility(
                                                   visible: event["assists"]
                                                       .isNotEmpty,
-                                                  child: CustomText(
+                                                  child: SizedBox(
+                                                    width: 1.sw * 0.35,
+                                                    child: CustomText(
                                                       text: event["assists"]
                                                               .isNotEmpty
                                                           ? '${event["assists"].map((assist) => assist["pl_name"]).join(", ")}'
-                                                          : ''),
+                                                          : '',
+                                                      isEllip: true,
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                    ),
+                                                  ),
                                                 ),
                                                 Visibility(
                                                   visible: event["type"] == 1,
-                                                  child: CustomText(
-                                                    text:
-                                                        '${event["pl_name_o"]}',
+                                                  child: SizedBox(
+                                                    width: 1.sw * 0.35,
+                                                    child: CustomText(
+                                                      text:
+                                                          '${event["pl_name_o"]}',
+                                                      isEllip: true,
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                    ),
                                                   ),
                                                 ),
                                                 Visibility(
                                                   visible: event["type"] == 26,
                                                   child: const CustomText(
                                                     text: 'VAR - No Goal',
+                                                  ),
+                                                ),
+                                                Visibility(
+                                                  visible: event["type"] == 5,
+                                                  child: const CustomText(
+                                                    text: 'Penalty',
+                                                  ),
+                                                ),
+                                                Visibility(
+                                                  visible: event["type"] == 6,
+                                                  child: const CustomText(
+                                                    text: 'Missed Penalty',
                                                   ),
                                                 )
                                               ],
@@ -269,6 +353,34 @@ class InfoWidget extends StatelessWidget {
                                                 child: Icon(
                                                   Icons.sports_soccer,
                                                   color: secondaryColor,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///Penalty
+                                            Visibility(
+                                              visible: event["type"] == 5,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 5.w),
+                                                child: Icon(
+                                                  Icons.sports_soccer,
+                                                  color: secondaryColor,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///Penalty Missed
+                                            Visibility(
+                                              visible: event["type"] == 6,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 5.w),
+                                                child: Icon(
+                                                  Icons.cancel,
+                                                  color: Colors.red,
                                                   size: 15.sp,
                                                 ),
                                               ),
