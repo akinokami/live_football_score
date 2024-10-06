@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:live_football_score/models/league_model.dart';
 import 'package:live_football_score/models/t.dart';
 
+import '../models/table_model.dart';
 import '../services/api_repo.dart';
 import '../utils/color_const.dart';
 import '../utils/constants.dart';
@@ -12,6 +13,7 @@ class LeagueController extends GetxController {
   final leagueId = ''.obs;
   Rx<LeagueModel> league = LeagueModel().obs;
   RxList<T> t = <T>[].obs;
+  Rx<Tables> table = Tables().obs;
 
   @override
   void onInit() {
@@ -25,6 +27,17 @@ class LeagueController extends GetxController {
     try {
       final result = await ApiRepo().getLeague(leagueId.value);
       league.value = result;
+
+      if ((league.value.l?.tables ?? []).isNotEmpty) {
+        if ((league.value.l?.tables ?? [])
+            .where((element) => element.code == 0)
+            .toList()
+            .isNotEmpty) {
+          table.value = (league.value.l?.tables ?? [])
+              .where((element) => element.code == 0)
+              .toList()[0];
+        }
+      }
     } catch (e) {
       constants.showSnackBar(title: 'Error', msg: e.toString(), textColor: red);
     } finally {

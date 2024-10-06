@@ -43,11 +43,12 @@ class TeamUpcomingWidget extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
-                    Get.to(() => const MatchDetailScreen(), arguments: {
-                      "matchId": fixtures?[index].id,
-                    });
-                  },
+                  onTap: null,
+                  // onTap: () {
+                  //   Get.to(() => const MatchDetailScreen(), arguments: {
+                  //     "matchId": fixtures?[index].id,
+                  //   });
+                  // },
                   child: Padding(
                     padding: EdgeInsets.all(10.w),
                     child: Row(

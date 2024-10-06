@@ -36,16 +36,16 @@ class LeagueScreen extends StatelessWidget {
                         backgroundColor: appBarColor,
                         iconTheme: const IconThemeData(color: Colors.white),
                         flexibleSpace: FlexibleSpaceBar(
-                          title: innerBoxIsScrolled
-                              ? CustomText(
-                                  text:
-                                      leagueController.league.value.cName ?? '',
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15.sp,
-                                )
-                              : null,
-                          centerTitle: true,
+                          // title: innerBoxIsScrolled
+                          //     ? CustomText(
+                          //         text:
+                          //             leagueController.league.value.cName ?? '',
+                          //         color: Colors.white,
+                          //         fontWeight: FontWeight.w600,
+                          //         fontSize: 15.sp,
+                          //       )
+                          //     : null,
+                          // centerTitle: true,
                           background: Container(
                             color: appBarColor,
                             child: Column(
@@ -120,19 +120,20 @@ class LeagueScreen extends StatelessWidget {
                                       child: CustomText(text: 'no_data'.tr),
                                     )
                                   : LeagueTableWidget(
-                                      tables: leagueController
-                                          .league.value.l?.tables?[0],
+                                      tables: leagueController.table.value,
                                     ),
                               LeagueTopScorersWidget(
                                 t: leagueController.t,
                               ),
                               LeagueTandPWidget(
                                 type: 'p',
-                                estats: leagueController.league.value.epstats,
+                                estats:
+                                    leagueController.league.value.epstats ?? [],
                               ),
                               LeagueTandPWidget(
                                 type: 't',
-                                estats: leagueController.league.value.estats,
+                                estats:
+                                    leagueController.league.value.estats ?? [],
                               ),
                             ],
                           ),

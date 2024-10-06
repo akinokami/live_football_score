@@ -38,15 +38,15 @@ class TeamScreen extends StatelessWidget {
                         backgroundColor: appBarColor,
                         iconTheme: const IconThemeData(color: Colors.white),
                         flexibleSpace: FlexibleSpaceBar(
-                          title: innerBoxIsScrolled
-                              ? CustomText(
-                                  text: teamController.team.value.name ?? '',
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15.sp,
-                                )
-                              : null,
-                          centerTitle: true,
+                          // title: innerBoxIsScrolled
+                          //     ? CustomText(
+                          //         text: teamController.team.value.name ?? '',
+                          //         color: Colors.white,
+                          //         fontWeight: FontWeight.w600,
+                          //         fontSize: 15.sp,
+                          //       )
+                          //     : null,
+                          // centerTitle: true,
                           background: Container(
                             color: appBarColor,
                             child: Column(

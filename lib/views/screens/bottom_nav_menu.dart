@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:live_football_score/utils/enum.dart';
+import 'package:live_football_score/views/screens/league/league_list_screen.dart';
 import 'package:live_football_score/views/screens/live/live_screen.dart';
 import 'package:live_football_score/views/screens/score/score_screen.dart';
 import 'package:live_football_score/views/screens/settings/setting_screen.dart';
@@ -156,7 +158,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
           items: [
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.scoreboard_outlined,
+                CupertinoIcons.sportscourt,
                 size: 18.sp,
               ),
               label: 'score'.tr,
@@ -164,7 +166,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.scoreboard_outlined,
+                Icons.live_tv,
                 size: 18.sp,
               ),
               label: 'live'.tr,
@@ -172,7 +174,15 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.settings,
+                Icons.emoji_events_outlined,
+                size: 18.sp,
+              ),
+              label: 'league'.tr,
+              backgroundColor: primaryColor,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                CupertinoIcons.settings,
                 size: 18.sp,
               ),
               label: 'settings'.tr,
@@ -195,6 +205,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
             children: const [
               ScoreScreen(),
               LiveScreen(),
+              LeagueListScreen(),
               SettingScreen(),
             ],
           )),

@@ -36,16 +36,16 @@ class PlayerScreen extends StatelessWidget {
                         backgroundColor: appBarColor,
                         iconTheme: const IconThemeData(color: Colors.white),
                         flexibleSpace: FlexibleSpaceBar(
-                          title: innerBoxIsScrolled
-                              ? CustomText(
-                                  text:
-                                      playerController.player.value.name ?? '',
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15.sp,
-                                )
-                              : null,
-                          centerTitle: true,
+                          // title: innerBoxIsScrolled
+                          //     ? CustomText(
+                          //         text:
+                          //             playerController.player.value.name ?? '',
+                          //         color: Colors.white,
+                          //         fontWeight: FontWeight.w600,
+                          //         fontSize: 15.sp,
+                          //       )
+                          //     : null,
+                          // centerTitle: true,
                           background: Container(
                             color: appBarColor,
                             child: Column(
@@ -67,9 +67,47 @@ class PlayerScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                 ),
                                 kSizedBoxH3,
-                                CustomText(
-                                  text: "Arsenal | Manager",
-                                  color: Colors.white,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CustomText(
+                                      text: (playerController
+                                                      .player.value.teams ??
+                                                  [])
+                                              .isNotEmpty
+                                          ? (playerController.player.value
+                                                  .teams?[0].name ??
+                                              '')
+                                          : '',
+                                      color: Colors.white,
+                                    ),
+                                    const CustomText(
+                                      text: ' | ',
+                                      color: Colors.white,
+                                    ),
+                                    CustomText(
+                                      text: playerController.player.value.pos ==
+                                              9
+                                          ? 'Manager'
+                                          : playerController.player.value.pos ==
+                                                  4
+                                              ? 'Forward'
+                                              : playerController
+                                                          .player.value.pos ==
+                                                      3
+                                                  ? 'Midfielder'
+                                                  : playerController.player
+                                                              .value.pos ==
+                                                          2
+                                                      ? 'Defender'
+                                                      : playerController.player
+                                                                  .value.pos ==
+                                                              1
+                                                          ? 'Goalkeeper'
+                                                          : '',
+                                      color: Colors.white,
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -106,10 +144,10 @@ class PlayerScreen extends StatelessWidget {
                         playerModel: playerController.player.value,
                       ),
                       PlayerCareerWidget(
-                        teams: playerController.player.value.teams,
+                        teams: playerController.player.value.teams ?? [],
                       ),
                       PlayerStatsWidget(
-                        stats: playerController.player.value.stats,
+                        stats: playerController.player.value.stats ?? [],
                       )
                     ],
                   ),

@@ -20,12 +20,14 @@ class ScoreScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
-          centerTitle: true,
+          centerTitle: false,
           backgroundColor: Colors.white,
-          title: CustomText(
-            text: 'score'.tr,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w500,
+          title: Obx(
+            () => CustomText(
+              text: "${'score'.tr} - ${scoreController.startDate}",
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           actions: [
             IconButton(

@@ -97,11 +97,12 @@ class TeamResultsWidget extends StatelessWidget {
                 //   ),
                 // )
                 InkWell(
-                  onTap: () {
-                    Get.to(() => const MatchDetailScreen(), arguments: {
-                      "matchId": results?[index].id,
-                    });
-                  },
+                  onTap: null,
+                  // onTap: () {
+                  //   Get.to(() => const MatchDetailScreen(), arguments: {
+                  //     "matchId": results?[index].id,
+                  //   });
+                  // },
                   child: Padding(
                     padding: EdgeInsets.all(10.w),
                     child: Row(
