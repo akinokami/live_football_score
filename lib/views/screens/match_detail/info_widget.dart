@@ -18,51 +18,341 @@ class InfoWidget extends StatelessWidget {
     return ListView(
       children: [
         ///Insights
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: double.infinity,
-              height: 35.h,
-              color: greyLeague,
-              padding: EdgeInsets.only(left: 10.w, right: 10.w),
-              alignment: Alignment.centerLeft,
-              child: CustomText(
-                text: 'insights'.tr,
-                fontWeight: FontWeight.w500,
+        Visibility(
+          visible: (matchDetailModel?.notes ?? []).isNotEmpty,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                height: 35.h,
+                color: greyLeague,
+                padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                alignment: Alignment.centerLeft,
+                child: CustomText(
+                  text: 'insights'.tr,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.w),
-              child: CustomText(
-                text: (matchDetailModel?.notes ?? []).isNotEmpty
-                    ? (matchDetailModel?.notes?[0].text ?? '')
-                    : '',
-                maxLines: 3,
+              Padding(
+                padding: EdgeInsets.all(10.w),
+                child: CustomText(
+                  text: (matchDetailModel?.notes ?? []).isNotEmpty
+                      ? (matchDetailModel?.notes?[0].text ?? '')
+                      : '',
+                  maxLines: 3,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
 
         ///Top Events
-        Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 35.h,
-              color: greyLeague,
-              padding: EdgeInsets.only(left: 10.w, right: 10.w),
-              alignment: Alignment.centerLeft,
-              child: CustomText(
-                text: 'top_events'.tr,
-                fontWeight: FontWeight.w500,
+        Visibility(
+          visible: matchDetailModel?.incs != null,
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 35.h,
+                color: greyLeague,
+                padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                alignment: Alignment.centerLeft,
+                child: CustomText(
+                  text: 'top_events'.tr,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.w),
-              child: Container(),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.all(10.w),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: matchDetailModel?.incs?.keys.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    String? key = matchDetailModel?.incs?.keys.elementAt(index);
+                    Map<String, dynamic> minuteEvents =
+                        matchDetailModel?.incs?[key];
+
+                    return ListView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: minuteEvents.keys.map((minute) {
+                        List<dynamic> events = minuteEvents[minute];
+
+                        return Column(
+                          children: events.map((event) {
+                            return Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: 1.sw * 0.42,
+                                      child: Visibility(
+                                        visible: event["pos"] == 0,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            ///Goal
+                                            Visibility(
+                                              visible: event["type"] == 4,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 5.w),
+                                                child: Icon(
+                                                  Icons.sports_soccer,
+                                                  color: secondaryColor,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///Change people
+                                            Visibility(
+                                              visible: event["type"] == 1,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 5.w),
+                                                child: Icon(
+                                                  Icons.sync_alt,
+                                                  color: secondaryColor,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///Yellow Card
+                                            Visibility(
+                                              visible: event["type"] == 10,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 5.w),
+                                                child: Icon(
+                                                  Icons.square,
+                                                  color: Colors.yellow,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///Red Card
+                                            Visibility(
+                                              visible: event["type"] == 11,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 5.w),
+                                                child: Icon(
+                                                  Icons.square,
+                                                  color: Colors.red,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///VR No Goal
+                                            Visibility(
+                                              visible: event["type"] == 26,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 5.w),
+                                                child: Icon(
+                                                  Icons.video_call,
+                                                  color: Colors.blue,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                CustomText(
+                                                  text: '${event["pl_name"]}',
+                                                  color: event["type"] == 4
+                                                      ? secondaryColor
+                                                      : Colors.black,
+                                                ),
+                                                Visibility(
+                                                  visible: event["assists"]
+                                                      .isNotEmpty,
+                                                  child: CustomText(
+                                                    text: event["assists"]
+                                                            .isNotEmpty
+                                                        ? '${event["assists"].map((assist) => assist["pl_name"]).join(", ")}'
+                                                        : '',
+                                                  ),
+                                                ),
+                                                Visibility(
+                                                  visible: event["type"] == 1,
+                                                  child: CustomText(
+                                                    text:
+                                                        '${event["pl_name_o"]}',
+                                                  ),
+                                                ),
+                                                Visibility(
+                                                  visible: event["type"] == 26,
+                                                  child: const CustomText(
+                                                    text: 'VAR - No Goal',
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    CustomText(
+                                      text: "${event["min"]} '",
+                                      color: event["type"] == 4
+                                          ? secondaryColor
+                                          : Colors.black,
+                                    ),
+                                    SizedBox(
+                                      width: 1.sw * 0.42,
+                                      child: Visibility(
+                                        visible: event["pos"] == 1,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                CustomText(
+                                                  text: '${event["pl_name"]}',
+                                                  color: event["type"] == 4
+                                                      ? secondaryColor
+                                                      : Colors.black,
+                                                ),
+                                                Visibility(
+                                                  visible: event["assists"]
+                                                      .isNotEmpty,
+                                                  child: CustomText(
+                                                      text: event["assists"]
+                                                              .isNotEmpty
+                                                          ? '${event["assists"].map((assist) => assist["pl_name"]).join(", ")}'
+                                                          : ''),
+                                                ),
+                                                Visibility(
+                                                  visible: event["type"] == 1,
+                                                  child: CustomText(
+                                                    text:
+                                                        '${event["pl_name_o"]}',
+                                                  ),
+                                                ),
+                                                Visibility(
+                                                  visible: event["type"] == 26,
+                                                  child: const CustomText(
+                                                    text: 'VAR - No Goal',
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+
+                                            ///Goal
+                                            Visibility(
+                                              visible: event["type"] == 4,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 5.w),
+                                                child: Icon(
+                                                  Icons.sports_soccer,
+                                                  color: secondaryColor,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///Change People
+                                            Visibility(
+                                              visible: event["type"] == 1,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 5.w),
+                                                child: Icon(
+                                                  Icons.sync_alt,
+                                                  color: secondaryColor,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///Yellow Card
+                                            Visibility(
+                                              visible: event["type"] == 10,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 5.w),
+                                                child: Icon(
+                                                  Icons.square,
+                                                  color: Colors.yellow,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///Red Card
+                                            Visibility(
+                                              visible: event["type"] == 11,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 5.w),
+                                                child: Icon(
+                                                  Icons.square,
+                                                  color: Colors.red,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+
+                                            ///VR No Goal
+                                            Visibility(
+                                              visible: event["type"] == 26,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 5.w),
+                                                child: Icon(
+                                                  Icons.video_call,
+                                                  color: Colors.blue,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.only(top: 5.h, bottom: 5.h),
+                                  child: Divider(
+                                      height: 1.h,
+                                      color: grey.withOpacity(0.3)),
+                                ),
+                              ],
+                            );
+                          }).toList(),
+                        );
+                      }).toList(),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
 
         ///Top Match Stats
