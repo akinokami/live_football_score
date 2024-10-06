@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_football_score/utils/dimen_const.dart';
+import 'package:live_football_score/utils/function.dart';
 
 import '../../../models/match_detail_model.dart';
 import '../../../utils/color_const.dart';
@@ -9,17 +10,272 @@ import '../../widgets/custom_text.dart';
 import '../player/player_screen.dart';
 
 class LineUpsWidget extends StatelessWidget {
+  final String? home;
+  final String? away;
   final List<Lineup>? lineup;
-  const LineUpsWidget({super.key, this.lineup});
+  const LineUpsWidget({super.key, this.home, this.away, this.lineup});
 
   @override
   Widget build(BuildContext context) {
-    return (lineup ?? []).isEmpty
+    return (lineup ?? []).length <= 1
         ? Center(
             child: CustomText(text: 'no_data'.tr),
           )
         : ListView(
             children: [
+              ///Lineups Form
+              Container(
+                height: 500.h,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      "assets/lineup.png",
+                    ),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(5.w),
+                            alignment: Alignment.centerLeft,
+                            child: CustomText(
+                              text: home ?? '',
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          kSizedBoxH10,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 1)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                            ],
+                          ),
+                          kSizedBoxH10,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 2)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 3)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 4)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 5)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                            ],
+                          ),
+                          kSizedBoxH10,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 6)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 7)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 8)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 9)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                            ],
+                          ),
+                          kSizedBoxH10,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 10)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[0]
+                                    .starting
+                                    ?.where((element) => element.aPos == 11)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 10)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 11)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                            ],
+                          ),
+                          kSizedBoxH10,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 6)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 7)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 8)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 9)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                            ],
+                          ),
+                          kSizedBoxH10,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 2)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 3)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 4)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 5)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                            ],
+                          ),
+                          kSizedBoxH10,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              LineUpPlayer(
+                                lineupPerson: lineup?[1]
+                                    .starting
+                                    ?.where((element) => element.aPos == 1)
+                                    .toList()
+                                    .firstOrNull,
+                              ),
+                            ],
+                          ),
+                          kSizedBoxH10,
+                          Container(
+                            padding: EdgeInsets.all(5.w),
+                            alignment: Alignment.centerLeft,
+                            child: CustomText(
+                              text: away ?? '',
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
               ///Starting Lineups
               Column(
                 children: [
@@ -498,5 +754,41 @@ class LineUpsWidget extends StatelessWidget {
               ),
             ],
           );
+  }
+}
+
+class LineUpPlayer extends StatelessWidget {
+  final LineupPerson? lineupPerson;
+  const LineUpPlayer({super.key, this.lineupPerson});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 25.w,
+          height: 25.w,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(100.w)),
+          child: CustomText(
+            text: "${lineupPerson?.jNum ?? ''}",
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        kSizedBoxH5,
+        Container(
+          padding: EdgeInsets.only(left: 3.w, right: 3.w),
+          decoration: BoxDecoration(
+              color: Colors.black, borderRadius: BorderRadius.circular(100.w)),
+          alignment: Alignment.center,
+          child: CustomText(
+            text: '${subStringAfterSpace(lineupPerson?.name ?? '')} ',
+            color: Colors.white,
+            fontSize: 10.sp,
+          ),
+        )
+      ],
+    );
   }
 }

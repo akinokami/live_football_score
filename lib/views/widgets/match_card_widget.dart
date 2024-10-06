@@ -1,3 +1,4 @@
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -37,10 +38,48 @@ class MatchCardWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(
-                        Icons.sports_soccer,
-                        size: 18.sp,
-                        color: secondaryColor,
+                      // Icon(
+                      //   Icons.sports_soccer,
+                      //   size: 18.sp,
+                      //   color: secondaryColor,
+                      // ),
+                      // Image.network(
+                      //   'https://api.snaptech.dev/logos/soccer/1/${matches?.teams?[0].id}/teamlogo.png',
+                      //   width: 16.w,
+                      // ),
+
+                      FastCachedImage(
+                        width: 16.w,
+                        url:
+                            'https://api.snaptech.dev/logos/soccer/1/${matches?.teams?[0].id}/teamlogo.png',
+                        fit: BoxFit.cover,
+                        fadeInDuration: const Duration(seconds: 1),
+                        errorBuilder: (context, exception, stacktrace) =>
+                            SizedBox(
+                                width: 16.w,
+                                child: Icon(
+                                  Icons.sports_soccer,
+                                  color: secondaryColor,
+                                  size: 18.sp,
+                                )),
+                        loadingBuilder: (context, progress) {
+                          return SizedBox(
+                            width: 16.w,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                if (progress.isDownloading &&
+                                    progress.totalBytes != null)
+                                  SizedBox(
+                                      width: 16.w,
+                                      child: CircularProgressIndicator(
+                                          color: Colors.green,
+                                          value: progress
+                                              .progressPercentage.value)),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                       SizedBox(
                         width: 10.w,
@@ -61,10 +100,43 @@ class MatchCardWidget extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(
-                        Icons.sports_soccer,
-                        size: 18.sp,
-                        color: secondaryColor,
+                      // Icon(
+                      //   Icons.sports_soccer,
+                      //   size: 18.sp,
+                      //   color: secondaryColor,
+                      // ),
+                      FastCachedImage(
+                        width: 16.w,
+                        url:
+                            'https://api.snaptech.dev/logos/soccer/1/${matches?.teams?[1].id}/teamlogo.png',
+                        fit: BoxFit.cover,
+                        fadeInDuration: const Duration(seconds: 1),
+                        errorBuilder: (context, exception, stacktrace) =>
+                            SizedBox(
+                                width: 16.w,
+                                child: Icon(
+                                  Icons.sports_soccer,
+                                  color: secondaryColor,
+                                  size: 18.sp,
+                                )),
+                        loadingBuilder: (context, progress) {
+                          return SizedBox(
+                            width: 16.w,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                if (progress.isDownloading &&
+                                    progress.totalBytes != null)
+                                  SizedBox(
+                                      width: 16.w,
+                                      child: CircularProgressIndicator(
+                                          color: Colors.green,
+                                          value: progress
+                                              .progressPercentage.value)),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                       SizedBox(
                         width: 10.w,

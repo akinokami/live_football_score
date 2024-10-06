@@ -1,3 +1,4 @@
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -54,10 +55,46 @@ class TeamScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 kSizedBoxH30,
-                                Icon(
-                                  Icons.sports_soccer,
-                                  size: 40.sp,
-                                  color: Colors.white,
+                                // Icon(
+                                //   Icons.sports_soccer,
+                                //   size: 40.sp,
+                                //   color: Colors.white,
+                                // ),
+                                FastCachedImage(
+                                  width: 35.w,
+                                  url:
+                                      'https://api.snaptech.dev/logos/soccer/1/${teamController.team.value.id}/teamlogo.png',
+                                  fit: BoxFit.cover,
+                                  fadeInDuration: const Duration(seconds: 1),
+                                  errorBuilder:
+                                      (context, exception, stacktrace) =>
+                                          SizedBox(
+                                              width: 35.w,
+                                              child: Icon(
+                                                Icons.sports_soccer,
+                                                color: Colors.white,
+                                                size: 35.sp,
+                                              )),
+                                  loadingBuilder: (context, progress) {
+                                    return SizedBox(
+                                      width: 35.w,
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          if (progress.isDownloading &&
+                                              progress.totalBytes != null)
+                                            SizedBox(
+                                                width: 35.w,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                        color: Colors.green,
+                                                        value: progress
+                                                            .progressPercentage
+                                                            .value)),
+                                        ],
+                                      ),
+                                    );
+                                  },
                                 ),
                                 kSizedBoxH5,
                                 CustomText(

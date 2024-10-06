@@ -1,3 +1,4 @@
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:live_football_score/utils/color_const.dart';
@@ -10,6 +11,9 @@ import 'utils/global.dart';
 
 void main() async {
   await LocalStorage.init();
+  await FastCachedImageConfig.init(
+    clearCacheAfter: const Duration(days: 3),
+  );
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }

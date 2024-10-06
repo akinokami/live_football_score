@@ -1,3 +1,4 @@
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -95,10 +96,50 @@ class MatchDetailScreen extends StatelessWidget {
                                         width: 1.sw * 0.25,
                                         child: Column(
                                           children: [
-                                            Icon(
-                                              Icons.sports_soccer,
-                                              color: Colors.white,
-                                              size: 35.sp,
+                                            // Icon(
+                                            //   Icons.sports_soccer,
+                                            //   color: Colors.white,
+                                            //   size: 35.sp,
+                                            // ),
+                                            FastCachedImage(
+                                              width: 35.w,
+                                              url:
+                                                  'https://api.snaptech.dev/logos/soccer/1/${matchDetailController.matchDetail.value.teams?[0].id}/teamlogo.png',
+                                              fit: BoxFit.cover,
+                                              fadeInDuration:
+                                                  const Duration(seconds: 1),
+                                              errorBuilder: (context, exception,
+                                                      stacktrace) =>
+                                                  SizedBox(
+                                                      width: 35.w,
+                                                      child: Icon(
+                                                        Icons.sports_soccer,
+                                                        color: Colors.white,
+                                                        size: 35.sp,
+                                                      )),
+                                              loadingBuilder:
+                                                  (context, progress) {
+                                                return SizedBox(
+                                                  width: 35.w,
+                                                  child: Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                      if (progress
+                                                              .isDownloading &&
+                                                          progress.totalBytes !=
+                                                              null)
+                                                        SizedBox(
+                                                            width: 35.w,
+                                                            child: CircularProgressIndicator(
+                                                                color: Colors
+                                                                    .green,
+                                                                value: progress
+                                                                    .progressPercentage
+                                                                    .value)),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
                                             ),
                                             kSizedBoxH3,
                                             CustomText(
@@ -368,10 +409,50 @@ class MatchDetailScreen extends StatelessWidget {
                                         width: 1.sw * 0.25,
                                         child: Column(
                                           children: [
-                                            Icon(
-                                              Icons.sports_soccer,
-                                              color: Colors.white,
-                                              size: 35.sp,
+                                            // Icon(
+                                            //   Icons.sports_soccer,
+                                            //   color: Colors.white,
+                                            //   size: 35.sp,
+                                            // ),
+                                            FastCachedImage(
+                                              width: 35.w,
+                                              url:
+                                                  'https://api.snaptech.dev/logos/soccer/1/${matchDetailController.matchDetail.value.teams?[1].id}/teamlogo.png',
+                                              fit: BoxFit.cover,
+                                              fadeInDuration:
+                                                  const Duration(seconds: 1),
+                                              errorBuilder: (context, exception,
+                                                      stacktrace) =>
+                                                  SizedBox(
+                                                      width: 35.w,
+                                                      child: Icon(
+                                                        Icons.sports_soccer,
+                                                        color: Colors.white,
+                                                        size: 35.sp,
+                                                      )),
+                                              loadingBuilder:
+                                                  (context, progress) {
+                                                return SizedBox(
+                                                  width: 35.w,
+                                                  child: Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                      if (progress
+                                                              .isDownloading &&
+                                                          progress.totalBytes !=
+                                                              null)
+                                                        SizedBox(
+                                                            width: 35.w,
+                                                            child: CircularProgressIndicator(
+                                                                color: Colors
+                                                                    .green,
+                                                                value: progress
+                                                                    .progressPercentage
+                                                                    .value)),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
                                             ),
                                             kSizedBoxH3,
                                             CustomText(
@@ -515,6 +596,23 @@ class MatchDetailScreen extends StatelessWidget {
                               LineUpsWidget(
                                 lineup: matchDetailController
                                     .matchDetail.value.lineup,
+                                home: (matchDetailController
+                                                .matchDetail.value.teams ??
+                                            [])
+                                        .isNotEmpty
+                                    ? (matchDetailController
+                                            .matchDetail.value.teams?[0].name ??
+                                        '')
+                                    : '',
+                                away: (matchDetailController
+                                                    .matchDetail.value.teams ??
+                                                [])
+                                            .length >
+                                        1
+                                    ? (matchDetailController
+                                            .matchDetail.value.teams?[1].name ??
+                                        '')
+                                    : '',
                               ),
                               LeagueTopScorersWidget(
                                 t: matchDetailController.t,

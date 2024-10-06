@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 String formatDate(DateTime date) {
@@ -27,4 +28,20 @@ String getMatchDate(String sDate) {
     '${sDate.substring(0, 4)}-${sDate.substring(4, 6)}-${sDate.substring(6, 8)}T${sDate.substring(8, 10)}:${sDate.substring(10, 12)}:${sDate.substring(12, 14)}',
   );
   return DateFormat('dd-MM-yyyy HH:mm').format(parsedDate);
+}
+
+String subStringAfterSpace(String text) {
+  int? index = text.indexOf(' ');
+  if (index == -1) {
+    return text;
+  }
+  return text.substring(index, text.length);
+}
+
+String subStringBeforeSpace(String text) {
+  int index = text.indexOf(' ');
+  if (index == -1) {
+    return text;
+  }
+  return text.substring(0, index);
 }

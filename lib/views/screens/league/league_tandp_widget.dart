@@ -1,3 +1,4 @@
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -74,13 +75,48 @@ class LeagueTandPWidget extends StatelessWidget {
                                         "${estats?[index].stats?[index1].ranking ?? ''}",
                                   ),
                                 ),
-                                Icon(
-                                  type == 'p'
-                                      ? Icons.account_circle
-                                      : Icons.sports_soccer,
-                                  size: 30.sp,
-                                  color: secondaryColor,
-                                ),
+                                type == 'p'
+                                    ? Icon(
+                                        Icons.account_circle,
+                                        size: 30.sp,
+                                        color: secondaryColor,
+                                      )
+                                    : FastCachedImage(
+                                        width: 20.w,
+                                        url:
+                                            'https://api.snaptech.dev/logos/soccer/1/${estats?[index].stats?[index1].participant?.id}/teamlogo.png',
+                                        fit: BoxFit.cover,
+                                        fadeInDuration:
+                                            const Duration(seconds: 1),
+                                        errorBuilder:
+                                            (context, exception, stacktrace) =>
+                                                SizedBox(
+                                                    width: 20.w,
+                                                    child: Icon(
+                                                      Icons.sports_soccer,
+                                                      color: secondaryColor,
+                                                      size: 25.sp,
+                                                    )),
+                                        loadingBuilder: (context, progress) {
+                                          return SizedBox(
+                                            width: 20.w,
+                                            child: Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                if (progress.isDownloading &&
+                                                    progress.totalBytes != null)
+                                                  SizedBox(
+                                                      width: 20.w,
+                                                      child: CircularProgressIndicator(
+                                                          color: Colors.green,
+                                                          value: progress
+                                                              .progressPercentage
+                                                              .value)),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
                                 kSizedBoxW5,
                                 type == 'p'
                                     ? Expanded(

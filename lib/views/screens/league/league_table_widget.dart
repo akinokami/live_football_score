@@ -1,3 +1,4 @@
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ class LeagueTableWidget extends StatelessWidget {
   final Tables? tables;
   final String? homeId;
   final String? awayId;
-  const LeagueTableWidget({super.key, this.tables,this.homeId,this.awayId});
+  const LeagueTableWidget({super.key, this.tables, this.homeId, this.awayId});
 
   @override
   Widget build(BuildContext context) {
@@ -37,42 +38,48 @@ class LeagueTableWidget extends StatelessWidget {
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'P',
-                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'W',
-                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'D',
-                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'L',
-                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'GD',
-                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
                   width: 1.sw * 0.07,
                   child: const CustomText(
                     text: 'PTS',
-                    textAlign: TextAlign.center,fontWeight: FontWeight.w500,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
@@ -88,7 +95,10 @@ class LeagueTableWidget extends StatelessWidget {
                   Container(
                     padding:
                         EdgeInsets.only(bottom: 2.h, top: 2.h, right: 10.w),
-                    color: tables?.teams?[index].teamId == homeId || tables?.teams?[index].teamId == awayId?  tableTeamColor:Colors.white,
+                    color: tables?.teams?[index].teamId == homeId ||
+                            tables?.teams?[index].teamId == awayId
+                        ? tableTeamColor
+                        : Colors.white,
                     child: Row(
                       children: [
                         Container(
@@ -103,7 +113,7 @@ class LeagueTableWidget extends StatelessWidget {
                                   (tables?.teams?[index].stagePhases ?? [])
                                       .contains(15) ||
                                   (tables?.teams?[index].stagePhases ?? [])
-                                      .contains(13)||
+                                      .contains(13) ||
                                   (tables?.teams?[index].stagePhases ?? [])
                                       .contains(19)
                               ? Colors.green
@@ -117,16 +127,13 @@ class LeagueTableWidget extends StatelessWidget {
                                       (tables?.teams?[index].stagePhases ?? [])
                                           .contains(45) ||
                                       (tables?.teams?[index].stagePhases ?? [])
-                                          .contains(14)||
-                                  (tables?.teams?[index].stagePhases ?? [])
-                                      .contains(20)
+                                          .contains(14) ||
+                                      (tables?.teams?[index].stagePhases ?? [])
+                                          .contains(20)
                                   ? Colors.cyan
-                                  : (tables?.teams?[index].stagePhases ?? [])
-                                              .contains(68) ||
-                                          (tables?.teams?[index].stagePhases ?? [])
-                                              .contains(61)||
-                                  (tables?.teams?[index].stagePhases ?? [])
-                                      .contains(21)
+                                  : (tables?.teams?[index].stagePhases ?? []).contains(68) ||
+                                          (tables?.teams?[index].stagePhases ?? []).contains(61) ||
+                                          (tables?.teams?[index].stagePhases ?? []).contains(21)
                                       ? Colors.blue
                                       : (tables?.teams?[index].stagePhases ?? []).contains(6)
                                           ? Colors.orange
@@ -151,6 +158,40 @@ class LeagueTableWidget extends StatelessWidget {
                         //   size: 30.sp,
                         //   color: secondaryColor,
                         // ),
+                   
+                        FastCachedImage(
+                          width: 16.w,
+                          url:
+                              'https://api.snaptech.dev/logos/soccer/1/${tables?.teams?[index].teamId}/teamlogo.png',
+                          fit: BoxFit.cover,
+                          fadeInDuration: const Duration(seconds: 1),
+                          errorBuilder: (context, exception, stacktrace) =>
+                              SizedBox(
+                                  width: 16.w,
+                                  child: Icon(
+                                    Icons.sports_soccer,
+                                    color: secondaryColor,
+                                    size: 18.sp,
+                                  )),
+                          loadingBuilder: (context, progress) {
+                            return SizedBox(
+                              width: 16.w,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  if (progress.isDownloading &&
+                                      progress.totalBytes != null)
+                                    SizedBox(
+                                        width: 16.w,
+                                        child: CircularProgressIndicator(
+                                            color: Colors.green,
+                                            value: progress
+                                                .progressPercentage.value)),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                         kSizedBoxW5,
                         Expanded(
                           child: CustomText(
@@ -232,21 +273,23 @@ class LeagueTableWidget extends StatelessWidget {
                                   tables?.legend?[index1].stagePhase == 3 ||
                                   tables?.legend?[index1].stagePhase == 1 ||
                                   tables?.legend?[index1].stagePhase == 12 ||
-                                  tables?.legend?[index1].stagePhase == 15||
-                                  tables?.legend?[index1].stagePhase == 13||
+                                  tables?.legend?[index1].stagePhase == 15 ||
+                                  tables?.legend?[index1].stagePhase == 13 ||
                                   tables?.legend?[index1].stagePhase == 19
                               ? Colors.green
                               : tables?.legend?[index1].stagePhase == 74 ||
                                       tables?.legend?[index1].stagePhase == 8 ||
                                       tables?.legend?[index1].stagePhase == 9 ||
                                       tables?.legend?[index1].stagePhase == 7 ||
-                                      tables?.legend?[index1].stagePhase == 45||
-                                  tables?.legend?[index1].stagePhase == 14||
-                                  tables?.legend?[index1].stagePhase == 20
+                                      tables?.legend?[index1].stagePhase ==
+                                          45 ||
+                                      tables?.legend?[index1].stagePhase ==
+                                          14 ||
+                                      tables?.legend?[index1].stagePhase == 20
                                   ? Colors.cyan
                                   : tables?.legend?[index1].stagePhase == 68 ||
                                           tables?.legend?[index1].stagePhase ==
-                                              61||
+                                              61 ||
                                           tables?.legend?[index1].stagePhase ==
                                               21
                                       ? Colors.blue
