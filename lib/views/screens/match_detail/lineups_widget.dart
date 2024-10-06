@@ -60,6 +60,7 @@ class LineUpsWidget extends StatelessWidget {
                                     ?.where((element) => element.aPos == 1)
                                     .toList()
                                     .firstOrNull,
+                                isGoalKeeper: true,
                               ),
                             ],
                           ),
@@ -256,6 +257,7 @@ class LineUpsWidget extends StatelessWidget {
                                     ?.where((element) => element.aPos == 1)
                                     .toList()
                                     .firstOrNull,
+                                isGoalKeeper: true,
                               ),
                             ],
                           ),
@@ -759,7 +761,8 @@ class LineUpsWidget extends StatelessWidget {
 
 class LineUpPlayer extends StatelessWidget {
   final LineupPerson? lineupPerson;
-  const LineUpPlayer({super.key, this.lineupPerson});
+  final bool? isGoalKeeper;
+  const LineUpPlayer({super.key, this.lineupPerson, this.isGoalKeeper});
 
   @override
   Widget build(BuildContext context) {
@@ -770,7 +773,8 @@ class LineUpPlayer extends StatelessWidget {
           height: 25.w,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(100.w)),
+              color: isGoalKeeper == true ? Colors.yellow : Colors.white,
+              borderRadius: BorderRadius.circular(100.w)),
           child: CustomText(
             text: "${lineupPerson?.jNum ?? ''}",
             fontWeight: FontWeight.bold,
