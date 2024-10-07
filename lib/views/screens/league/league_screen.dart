@@ -127,6 +127,7 @@ class LeagueScreen extends StatelessWidget {
                           PreferredSize(
                             preferredSize: Size.fromHeight(35.h),
                             child: TabBar(
+                              isScrollable: true,
                               onTap: (int value) {
                                 if (value == 1) {
                                   leagueController.getTopScorers();
