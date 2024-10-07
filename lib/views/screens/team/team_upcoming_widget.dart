@@ -104,6 +104,15 @@ class TeamUpcomingWidget extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
+                                  SizedBox(
+                                    width: 1.sw * 0.12,
+                                    child: CustomText(
+                                      text: getShortDate(
+                                          "${fixtures?[index].start}"),
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+                                  kSizedBoxW2,
                                   // Icon(
                                   //   Icons.sports_soccer,
                                   //   size: 18.sp,
@@ -160,6 +169,15 @@ class TeamUpcomingWidget extends StatelessWidget {
                               ),
                               Row(
                                 children: [
+                                  SizedBox(
+                                    width: 1.sw * 0.12,
+                                    child: CustomText(
+                                      text:
+                                          getTime("${fixtures?[index].start}"),
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+                                  kSizedBoxW2,
                                   // Icon(
                                   //   Icons.sports_soccer,
                                   //   size: 18.sp,

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_football_score/models/h2h_model.dart';
+import 'package:live_football_score/utils/dimen_const.dart';
+import 'package:live_football_score/utils/function.dart';
 
 import '../../../utils/color_const.dart';
 import '../../widgets/custom_text.dart';
@@ -37,11 +39,12 @@ class H2HWidget extends StatelessWidget {
                   return Column(
                     children: [
                       InkWell(
-                        onTap: () {
-                          // Get.to(() => const MatchDetailScreen(), arguments: {
-                          //   "matchId": h2hModel?.h2h?.matches?[index].id,
-                          // });
-                        },
+                        onTap: null,
+                        // onTap: () {
+                        //   // Get.to(() => const MatchDetailScreen(), arguments: {
+                        //   //   "matchId": h2hModel?.h2h?.matches?[index].id,
+                        //   // });
+                        // },
                         child: Padding(
                           padding: EdgeInsets.all(10.w),
                           child: Row(
@@ -51,6 +54,15 @@ class H2HWidget extends StatelessWidget {
                                   children: [
                                     Row(
                                       children: [
+                                        SizedBox(
+                                          width: 1.sw * 0.12,
+                                          child: CustomText(
+                                            text: getShortDate(
+                                                "${h2hModel?.h2h?.matches?[index].start}"),
+                                            color: Colors.black54,
+                                          ),
+                                        ),
+                                        kSizedBoxW2,
                                         // Icon(
                                         //   Icons.sports_soccer,
                                         //   size: 18.sp,
@@ -135,6 +147,15 @@ class H2HWidget extends StatelessWidget {
                                     ),
                                     Row(
                                       children: [
+                                        SizedBox(
+                                          width: 1.sw * 0.12,
+                                          child: CustomText(
+                                            text: getTime(
+                                                "${h2hModel?.h2h?.matches?[index].start}"),
+                                            color: Colors.black54,
+                                          ),
+                                        ),
+                                        kSizedBoxW2,
                                         // Icon(
                                         //   Icons.sports_soccer,
                                         //   size: 18.sp,
@@ -328,13 +349,14 @@ class H2HWidget extends StatelessWidget {
                       return Column(
                         children: [
                           InkWell(
-                            onTap: () {
-                              // Get.to(() => const MatchDetailScreen(),
-                              //     arguments: {
-                              //       "matchId":
-                              //           h2hModel?.h2h?.matches?[index].id,
-                              //     });
-                            },
+                            onTap: null,
+                            // () {
+                            //   // Get.to(() => const MatchDetailScreen(),
+                            //   //     arguments: {
+                            //   //       "matchId":
+                            //   //           h2hModel?.h2h?.matches?[index].id,
+                            //   //     });
+                            // },
                             child: Padding(
                               padding: EdgeInsets.all(10.w),
                               child: Row(
@@ -344,6 +366,15 @@ class H2HWidget extends StatelessWidget {
                                       children: [
                                         Row(
                                           children: [
+                                            SizedBox(
+                                              width: 1.sw * 0.12,
+                                              child: CustomText(
+                                                text: getShortDate(
+                                                    "${h2hModel?.teams?[index].matches?[matchIndex].start}"),
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                            kSizedBoxW2,
                                             // Icon(
                                             //   Icons.sports_soccer,
                                             //   size: 18.sp,
@@ -446,6 +477,15 @@ class H2HWidget extends StatelessWidget {
                                         ),
                                         Row(
                                           children: [
+                                            SizedBox(
+                                              width: 1.sw * 0.12,
+                                              child: CustomText(
+                                                text: getTime(
+                                                    "${h2hModel?.teams?[index].matches?[matchIndex].start}"),
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                            kSizedBoxW2,
                                             // Icon(
                                             //   Icons.sports_soccer,
                                             //   size: 18.sp,

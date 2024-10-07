@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_football_score/models/team_model.dart';
 import 'package:live_football_score/utils/dimen_const.dart';
+import 'package:live_football_score/utils/function.dart';
 
 import '../../../utils/color_const.dart';
 import '../../widgets/custom_text.dart';
@@ -158,6 +159,15 @@ class TeamResultsWidget extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
+                                  SizedBox(
+                                    width: 1.sw * 0.12,
+                                    child: CustomText(
+                                      text: getShortDate(
+                                          "${results?[index].start}"),
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+                                  kSizedBoxW2,
                                   // Icon(
                                   //   Icons.sports_soccer,
                                   //   size: 18.sp,
@@ -224,6 +234,14 @@ class TeamResultsWidget extends StatelessWidget {
                               ),
                               Row(
                                 children: [
+                                  SizedBox(
+                                    width: 1.sw * 0.12,
+                                    child: CustomText(
+                                      text: getTime("${results?[index].start}"),
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+                                  kSizedBoxW2,
                                   // Icon(
                                   //   Icons.sports_soccer,
                                   //   size: 18.sp,

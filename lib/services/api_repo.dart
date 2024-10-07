@@ -132,6 +132,9 @@ class ApiRepo {
             "epstats": 1,
             "eStats": 1
           });
+      if (response.data == "{}") {
+        return LeagueModel();
+      }
       final team = response.data;
       return LeagueModel.fromJson(team);
     } catch (e) {

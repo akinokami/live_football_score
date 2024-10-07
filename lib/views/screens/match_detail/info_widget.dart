@@ -63,6 +63,7 @@ class InfoWidget extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
+              kSizedBoxH15,
               Padding(
                 padding: EdgeInsets.all(10.w),
                 child: ListView.builder(
@@ -157,28 +158,36 @@ class InfoWidget extends StatelessWidget {
                                             Visibility(
                                               visible: event["type"] == 10,
                                               child: Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 5.w),
-                                                child: Icon(
-                                                  Icons.square,
-                                                  color: Colors.yellow,
-                                                  size: 15.sp,
-                                                ),
-                                              ),
+                                                  padding: EdgeInsets.only(
+                                                      right: 10.w),
+                                                  child: Image.asset(
+                                                    'assets/yellow.png',
+                                                    width: 10.w,
+                                                  )),
                                             ),
 
                                             ///Red Card
                                             Visibility(
                                               visible: event["type"] == 11,
                                               child: Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 5.w),
-                                                child: Icon(
-                                                  Icons.square,
-                                                  color: Colors.red,
-                                                  size: 15.sp,
-                                                ),
-                                              ),
+                                                  padding: EdgeInsets.only(
+                                                      right: 10.w),
+                                                  child: Image.asset(
+                                                    'assets/red.png',
+                                                    width: 10.w,
+                                                  )),
+                                            ),
+
+                                            ///Yellow Red Card
+                                            Visibility(
+                                              visible: event["type"] == 12,
+                                              child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 5.w),
+                                                  child: Image.asset(
+                                                    'assets/yellow_red.png',
+                                                    width: 15.w,
+                                                  )),
                                             ),
 
                                             ///VR No Goal
@@ -404,28 +413,36 @@ class InfoWidget extends StatelessWidget {
                                             Visibility(
                                               visible: event["type"] == 10,
                                               child: Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: 5.w),
-                                                child: Icon(
-                                                  Icons.square,
-                                                  color: Colors.yellow,
-                                                  size: 15.sp,
-                                                ),
-                                              ),
+                                                  padding: EdgeInsets.only(
+                                                      left: 10.w),
+                                                  child: Image.asset(
+                                                    'assets/yellow.png',
+                                                    width: 10.w,
+                                                  )),
                                             ),
 
                                             ///Red Card
                                             Visibility(
                                               visible: event["type"] == 11,
                                               child: Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: 5.w),
-                                                child: Icon(
-                                                  Icons.square,
-                                                  color: Colors.red,
-                                                  size: 15.sp,
-                                                ),
-                                              ),
+                                                  padding: EdgeInsets.only(
+                                                      left: 10.w),
+                                                  child: Image.asset(
+                                                    'assets/red.png',
+                                                    width: 10.w,
+                                                  )),
+                                            ),
+
+                                            ///Yellow Red Card
+                                            Visibility(
+                                              visible: event["type"] == 12,
+                                              child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 5.w),
+                                                  child: Image.asset(
+                                                    'assets/yellow_red.png',
+                                                    width: 15.w,
+                                                  )),
                                             ),
 
                                             ///VR No Goal
@@ -447,13 +464,14 @@ class InfoWidget extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 5.h, bottom: 5.h),
-                                  child: Divider(
-                                      height: 1.h,
-                                      color: grey.withOpacity(0.3)),
-                                ),
+                                kSizedBoxH15,
+                                // Padding(
+                                //   padding:
+                                //       EdgeInsets.only(top: 5.h, bottom: 5.h),
+                                //   child: Divider(
+                                //       height: 1.h,
+                                //       color: grey.withOpacity(0.3)),
+                                // ),
                               ],
                             );
                           }).toList(),
