@@ -174,6 +174,32 @@ class TeamScreen extends StatelessWidget {
   }
 }
 
+// class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+//   final PreferredSize _tabBar;
+
+//   _SliverAppBarDelegate(this._tabBar);
+
+//   @override
+//   double get minExtent => _tabBar.preferredSize.height;
+
+//   @override
+//   double get maxExtent => _tabBar.preferredSize.height;
+
+//   @override
+//   Widget build(
+//       BuildContext context, double shrinkOffset, bool overlapsContent) {
+//     return Container(
+//       color: tabColor,
+//       child: _tabBar,
+//     );
+//   }
+
+//   @override
+//   bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+//     return false;
+//   }
+// }
+
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   final PreferredSize _tabBar;
 
@@ -189,6 +215,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
+      height: _tabBar.preferredSize.height, // Set a fixed height
       color: tabColor,
       child: _tabBar,
     );

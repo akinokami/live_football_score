@@ -17,6 +17,7 @@ class LineUpsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(1.sh);
     return (lineup ?? []).length <= 1
         ? Center(
             child: CustomText(text: 'no_data'.tr),
@@ -25,7 +26,7 @@ class LineUpsWidget extends StatelessWidget {
             children: [
               ///Lineups Form
               Container(
-                height: 1.sh * 0.80,
+                height: 1.sh > 1000 ? 1.sh * 0.90 : 1.sh * 0.80,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(

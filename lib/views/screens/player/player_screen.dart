@@ -25,112 +25,6 @@ class PlayerScreen extends StatelessWidget {
               ? const Center(
                   child: CustomLoading(),
                 )
-              // : CustomScrollView(
-              //     slivers: [
-              //       SliverAppBar(
-              //         pinned: true,
-              //         expandedHeight: 200.0,
-              //         flexibleSpace: FlexibleSpaceBar(
-              //           // title: Text('SliverAppBar with Tabs'),
-              //           background: Container(
-              //             color: appBarColor,
-              //             child: Column(
-              //               mainAxisAlignment: MainAxisAlignment.center,
-              //               crossAxisAlignment: CrossAxisAlignment.center,
-              //               children: [
-              //                 kSizedBoxH30,
-              //                 Icon(
-              //                   Icons.account_circle,
-              //                   size: 40.sp,
-              //                   color: Colors.white,
-              //                 ),
-              //                 kSizedBoxH5,
-              //                 CustomText(
-              //                   text: playerController.player.value.name ?? '',
-              //                   color: Colors.white,
-              //                   fontSize: 14.sp,
-              //                   fontWeight: FontWeight.w500,
-              //                 ),
-              //                 kSizedBoxH3,
-              //                 Row(
-              //                   mainAxisAlignment: MainAxisAlignment.center,
-              //                   children: [
-              //                     CustomText(
-              //                       text:
-              //                           (playerController.player.value.teams ??
-              //                                       [])
-              //                                   .isNotEmpty
-              //                               ? (playerController.player.value
-              //                                       .teams?[0].name ??
-              //                                   '')
-              //                               : '',
-              //                       color: Colors.white,
-              //                     ),
-              //                     const CustomText(
-              //                       text: ' | ',
-              //                       color: Colors.white,
-              //                     ),
-              //                     CustomText(
-              //                       text: playerController.player.value.pos == 9
-              //                           ? 'Manager'
-              //                           : playerController.player.value.pos == 4
-              //                               ? 'Forward'
-              //                               : playerController
-              //                                           .player.value.pos ==
-              //                                       3
-              //                                   ? 'Midfielder'
-              //                                   : playerController
-              //                                               .player.value.pos ==
-              //                                           2
-              //                                       ? 'Defender'
-              //                                       : playerController.player
-              //                                                   .value.pos ==
-              //                                               1
-              //                                           ? 'Goalkeeper'
-              //                                           : '',
-              //                       color: Colors.white,
-              //                     ),
-              //                   ],
-              //                 ),
-              //               ],
-              //             ),
-              //           ),
-              //         ),
-              //         bottom: PreferredSize(
-              //           preferredSize: Size.fromHeight(30.h),
-              //           child: TabBar(
-              //             indicatorSize: TabBarIndicatorSize.tab,
-              //             dividerColor: Colors.transparent,
-              //             indicator: BoxDecoration(
-              //               color: secondaryColor,
-              //             ),
-              //             labelColor: Colors.white,
-              //             unselectedLabelColor: Colors.white,
-              //             tabs: [
-              //               Tab(text: 'profile'.tr),
-              //               Tab(text: 'career'.tr),
-              //               Tab(text: 'stats'.tr),
-              //             ],
-              //           ),
-              //         ),
-              //       ),
-              //       SliverFillRemaining(
-              //         child: TabBarView(
-              //           children: [
-              //             PlayerProfileWidget(
-              //               playerModel: playerController.player.value,
-              //             ),
-              //             PlayerCareerWidget(
-              //               teams: playerController.player.value.teams ?? [],
-              //             ),
-              //             PlayerStatsWidget(
-              //               stats: playerController.player.value.stats ?? [],
-              //             )
-              //           ],
-              //         ),
-              //       ),
-              //     ],
-              //   ),
               : NestedScrollView(
                   headerSliverBuilder:
                       (BuildContext context, bool innerBoxIsScrolled) {
@@ -264,6 +158,32 @@ class PlayerScreen extends StatelessWidget {
   }
 }
 
+// class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+//   final PreferredSize _tabBar;
+
+//   _SliverAppBarDelegate(this._tabBar);
+
+//   @override
+//   double get minExtent => _tabBar.preferredSize.height;
+
+//   @override
+//   double get maxExtent => _tabBar.preferredSize.height;
+
+//   @override
+//   Widget build(
+//       BuildContext context, double shrinkOffset, bool overlapsContent) {
+//     return Container(
+//       color: tabColor,
+//       child: _tabBar,
+//     );
+//   }
+
+//   @override
+//   bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+//     return false;
+//   }
+// }
+
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   final PreferredSize _tabBar;
 
@@ -279,6 +199,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
+      height: _tabBar.preferredSize.height, // Set a fixed height
       color: tabColor,
       child: _tabBar,
     );
@@ -289,65 +210,3 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
     return false;
   }
 }
-
-// import 'package:flutter/material.dart';
-
-// class PlayerScreen extends PlayerScreen {
-//   @override
-//   _MyHomePageState createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<PlayerScreen> with SingleTickerProviderStateMixin {
-//   late TabController _tabController;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _tabController = TabController(length: 3, vsync: this);
-//   }
-
-//   @override
-//   void dispose() {
-//     _tabController.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: CustomScrollView(
-//         slivers: [
-//           SliverAppBar(
-//             pinned: true,
-//             expandedHeight: 200.0,
-//             flexibleSpace: FlexibleSpaceBar(
-//               title: Text('SliverAppBar with Tabs'),
-//               background: Image.network(
-//                 'https://source.unsplash.com/random',
-//                 fit: BoxFit.cover,
-//               ),
-//             ),
-//             bottom: TabBar(
-//               controller: _tabController,
-//               tabs: [
-//                 Tab(icon: Icon(Icons.directions_car), text: "Car"),
-//                 Tab(icon: Icon(Icons.directions_bike), text: "Bike"),
-//                 Tab(icon: Icon(Icons.directions_boat), text: "Boat"),
-//               ],
-//             ),
-//           ),
-//           SliverFillRemaining(
-//             child: TabBarView(
-//               controller: _tabController,
-//               children: [
-//                 Center(child: Text("Car Tab")),
-//                 Center(child: Text("Bike Tab")),
-//                 Center(child: Text("Boat Tab")),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
