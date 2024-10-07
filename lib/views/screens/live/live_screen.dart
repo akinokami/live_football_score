@@ -34,117 +34,125 @@ class LiveScreen extends StatelessWidget {
               ? const Center(
                   child: CustomLoading(),
                 )
-              : ListView.builder(
-                  itemCount: liveController.matches.length,
-                  itemBuilder: (context, index) {
-                    return StickyHeader(
-                        header: InkWell(
-                          onTap: () {
-                            Get.to(() => const LeagueScreen(), arguments: {
-                              "leagueId": liveController.matches[index].stId
-                            });
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            height: 35.h,
-                            color: greyLeague,
-                            padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(100.w),
-                                        child: FastCachedImage(
-                                          width: 16.w,
-                                          height: 16.w,
-                                          url:
-                                              'https://api.snaptech.dev/flags/2/${liveController.matches[index].cId}/4x3.png',
-                                          fit: BoxFit.cover,
-                                          fadeInDuration:
-                                              const Duration(seconds: 1),
-                                          errorBuilder: (context, exception,
-                                                  stacktrace) =>
-                                              SizedBox(
-                                                  width: 16.w,
-                                                  height: 16.w,
-                                                  child: Icon(
-                                                    Icons.sports_soccer,
-                                                    color: secondaryColor,
-                                                    size: 18.sp,
-                                                  )),
-                                          loadingBuilder: (context, progress) {
-                                            return SizedBox(
+              : liveController.matches.isEmpty
+                  ? Center(
+                      child: CustomText(text: 'no_live'.tr),
+                    )
+                  : ListView.builder(
+                      itemCount: liveController.matches.length,
+                      itemBuilder: (context, index) {
+                        return StickyHeader(
+                            header: InkWell(
+                              onTap: () {
+                                Get.to(() => const LeagueScreen(), arguments: {
+                                  "leagueId": liveController.matches[index].stId
+                                });
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 35.h,
+                                color: greyLeague,
+                                padding:
+                                    EdgeInsets.only(left: 10.w, right: 10.w),
+                                alignment: Alignment.centerLeft,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Row(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100.w),
+                                            child: FastCachedImage(
                                               width: 16.w,
                                               height: 16.w,
-                                              child: Stack(
-                                                alignment: Alignment.center,
-                                                children: [
-                                                  if (progress.isDownloading &&
-                                                      progress.totalBytes !=
-                                                          null)
-                                                    SizedBox(
-                                                        width: 16.w,
-                                                        height: 16.w,
-                                                        child: CircularProgressIndicator(
-                                                            color: Colors.green,
-                                                            value: progress
-                                                                .progressPercentage
-                                                                .value)),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        ),
+                                              url:
+                                                  'https://api.snaptech.dev/flags/2/${liveController.matches[index].cId}/4x3.png',
+                                              fit: BoxFit.cover,
+                                              fadeInDuration:
+                                                  const Duration(seconds: 1),
+                                              errorBuilder: (context, exception,
+                                                      stacktrace) =>
+                                                  SizedBox(
+                                                      width: 16.w,
+                                                      height: 16.w,
+                                                      child: Icon(
+                                                        Icons.sports_soccer,
+                                                        color: secondaryColor,
+                                                        size: 18.sp,
+                                                      )),
+                                              loadingBuilder:
+                                                  (context, progress) {
+                                                return SizedBox(
+                                                  width: 16.w,
+                                                  height: 16.w,
+                                                  child: Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                      if (progress
+                                                              .isDownloading &&
+                                                          progress.totalBytes !=
+                                                              null)
+                                                        SizedBox(
+                                                            width: 16.w,
+                                                            height: 16.w,
+                                                            child: CircularProgressIndicator(
+                                                                color: Colors
+                                                                    .green,
+                                                                value: progress
+                                                                    .progressPercentage
+                                                                    .value)),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                          kSizedBoxW10,
+                                          Expanded(
+                                            child: CustomText(
+                                              text:
+                                                  "${liveController.matches[index].cName} : ${liveController.matches[index].stName}",
+                                              fontWeight: FontWeight.w500,
+                                              maxLines: 2,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      kSizedBoxW10,
-                                      Expanded(
-                                        child: CustomText(
-                                          text:
-                                              "${liveController.matches[index].cName} : ${liveController.matches[index].stName}",
-                                          fontWeight: FontWeight.w500,
-                                          maxLines: 2,
-                                        ),
+                                    ),
+                                    CustomText(
+                                        text:
+                                            "${liveController.matches[index].matches?.length ?? 0}")
+                                  ],
+                                ),
+                              ),
+                            ),
+                            content: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: liveController
+                                    .matches[index].matches?.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index1) {
+                                  return Column(
+                                    children: [
+                                      MatchCardWidget(
+                                        matches: liveController
+                                            .matches[index].matches?[index1],
+                                      ),
+                                      Visibility(
+                                        visible: index1 !=
+                                            (liveController.matches[index]
+                                                        .matches?.length ??
+                                                    1) -
+                                                1,
+                                        child: Divider(
+                                            height: 1.h,
+                                            color: grey.withOpacity(0.3)),
                                       ),
                                     ],
-                                  ),
-                                ),
-                                CustomText(
-                                    text:
-                                        "${liveController.matches[index].matches?.length ?? 0}")
-                              ],
-                            ),
-                          ),
-                        ),
-                        content: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount:
-                                liveController.matches[index].matches?.length,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index1) {
-                              return Column(
-                                children: [
-                                  MatchCardWidget(
-                                    matches: liveController
-                                        .matches[index].matches?[index1],
-                                  ),
-                                  Visibility(
-                                    visible: index1 !=
-                                        (liveController.matches[index].matches
-                                                    ?.length ??
-                                                1) -
-                                            1,
-                                    child: Divider(
-                                        height: 1.h,
-                                        color: grey.withOpacity(0.3)),
-                                  ),
-                                ],
-                              );
-                            }));
-                  }),
+                                  );
+                                }));
+                      }),
         ));
   }
 }

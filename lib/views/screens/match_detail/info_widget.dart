@@ -603,51 +603,44 @@ class InfoWidget extends StatelessWidget {
                         padding: EdgeInsets.only(
                             bottom: 8.h, top: 8.h, left: 10.w, right: 10.w),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
-                              child: CustomText(
-                                text:
-                                    matchDetailModel?.forms?[index].name ?? '',
-                              ),
+                            CustomText(
+                              text: matchDetailModel?.forms?[index].name ?? '',
                             ),
                             SizedBox(
                               height: 25.w,
-                              child: Expanded(
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: matchDetailModel
-                                        ?.forms?[index].formsText?.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index1) {
-                                      return Container(
-                                        width: 25.w,
-                                        padding: EdgeInsets.all(5.w),
-                                        margin: EdgeInsets.only(right: 5.w),
-                                        decoration: BoxDecoration(
-                                            color: matchDetailModel
-                                                        ?.forms?[index]
-                                                        .formsText?[index1] ==
-                                                    'W'
-                                                ? secondaryColor
-                                                : matchDetailModel
-                                                                ?.forms?[index]
-                                                                .formsText?[
-                                                            index1] ==
-                                                        'L'
-                                                    ? red
-                                                    : grey,
-                                            borderRadius:
-                                                BorderRadius.circular(100.r)),
-                                        alignment: Alignment.center,
-                                        child: CustomText(
-                                          text: matchDetailModel?.forms?[index]
-                                                  .formsText?[index1] ??
-                                              '',
-                                          color: Colors.white,
-                                        ),
-                                      );
-                                    }),
-                              ),
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: matchDetailModel
+                                      ?.forms?[index].formsText?.length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index1) {
+                                    return Container(
+                                      width: 25.w,
+                                      padding: EdgeInsets.all(5.w),
+                                      margin: EdgeInsets.only(right: 5.w),
+                                      decoration: BoxDecoration(
+                                          color: matchDetailModel?.forms?[index]
+                                                      .formsText?[index1] ==
+                                                  'W'
+                                              ? secondaryColor
+                                              : matchDetailModel?.forms?[index]
+                                                          .formsText?[index1] ==
+                                                      'L'
+                                                  ? red
+                                                  : grey,
+                                          borderRadius:
+                                              BorderRadius.circular(100.r)),
+                                      alignment: Alignment.center,
+                                      child: CustomText(
+                                        text: matchDetailModel?.forms?[index]
+                                                .formsText?[index1] ??
+                                            '',
+                                        color: Colors.white,
+                                      ),
+                                    );
+                                  }),
                             ),
                           ],
                         ),

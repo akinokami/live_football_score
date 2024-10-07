@@ -111,5 +111,6 @@ class HiLanguage {
     'starting_lineups': 'आरंभिक लाइनअप',
     'substituted_players': 'स्थानापन्न खिलाड़ी',
     'injured': 'घायल',
+    'no_live': 'कोई लाइव मैच नहीं है'
   };
 }

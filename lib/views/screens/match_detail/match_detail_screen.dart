@@ -38,7 +38,7 @@ class MatchDetailScreen extends StatelessWidget {
                       (BuildContext context, bool innerBoxIsScrolled) {
                     return <Widget>[
                       SliverAppBar(
-                        expandedHeight: 150.h,
+                        expandedHeight: 200, //150.h,
                         floating: false,
                         pinned: true,
                         backgroundColor: appBarColor,
@@ -514,7 +514,7 @@ class MatchDetailScreen extends StatelessWidget {
                       SliverPersistentHeader(
                         delegate: _SliverAppBarDelegate(
                           PreferredSize(
-                            preferredSize: Size.fromHeight(30.h),
+                            preferredSize: Size.fromHeight(35.h),
                             child: TabBar(
                               onTap: (int value) {
                                 if (value == 3) {

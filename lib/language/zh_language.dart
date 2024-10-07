@@ -111,5 +111,6 @@ class ZhLanguage {
     'starting_lineups': '先發陣容',
     'substituted_players': '替補球員',
     'injured': '受傷',
+    'no_live': '沒有現場比賽'
   };
 }

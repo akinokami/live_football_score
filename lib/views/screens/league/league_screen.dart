@@ -125,7 +125,7 @@ class LeagueScreen extends StatelessWidget {
                       SliverPersistentHeader(
                         delegate: _SliverAppBarDelegate(
                           PreferredSize(
-                            preferredSize: Size.fromHeight(30.h),
+                            preferredSize: Size.fromHeight(35.h),
                             child: TabBar(
                               onTap: (int value) {
                                 if (value == 1) {

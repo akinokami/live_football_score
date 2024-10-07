@@ -111,5 +111,6 @@ class EnLanguage {
     'starting_lineups': 'Starting Lineups',
     'substituted_players': 'Substituted Player',
     'injured': 'Injured',
+    'no_live': 'There is no live matches'
   };
 }

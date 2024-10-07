@@ -109,5 +109,6 @@ class ViLanguage {
     'starting_lineups': 'Đội hình xuất phát',
     'substituted_players': 'Cầu thủ dự bị',
     'injured': 'Bị thương',
+    'no_live': 'Không có trận đấu trực tiếp'
   };
 }
