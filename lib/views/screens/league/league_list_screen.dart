@@ -46,9 +46,9 @@ class LeagueListScreen extends StatelessWidget {
                       child: Container(
                         margin: EdgeInsets.only(bottom: 5.h),
                         width: double.infinity,
-                        height: 35.h,
                         color: Colors.white,
-                        padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                        // padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                        padding: EdgeInsets.all(10.w),
                         alignment: Alignment.centerLeft,
                         child: Row(
                           children: [

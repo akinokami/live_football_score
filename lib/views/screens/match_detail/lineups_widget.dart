@@ -25,7 +25,7 @@ class LineUpsWidget extends StatelessWidget {
             children: [
               ///Lineups Form
               Container(
-                height: 500.h,
+                height: 1.sh * 0.80,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(

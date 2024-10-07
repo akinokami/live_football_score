@@ -7,6 +7,7 @@ import 'package:live_football_score/models/table_model.dart';
 import '../../../utils/color_const.dart';
 import '../../../utils/dimen_const.dart';
 import '../../widgets/custom_text.dart';
+import '../team/team_screen.dart';
 
 class LeagueTableWidget extends StatelessWidget {
   final Tables? tables;
@@ -92,155 +93,160 @@ class LeagueTableWidget extends StatelessWidget {
             itemBuilder: ((context, index) {
               return Column(
                 children: [
-                  Container(
-                    padding:
-                        EdgeInsets.only(bottom: 2.h, top: 2.h, right: 10.w),
-                    color: tables?.teams?[index].teamId == homeId ||
-                            tables?.teams?[index].teamId == awayId
-                        ? tableTeamColor
-                        : Colors.white,
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 4.w,
-                          color: (tables?.teams?[index].stagePhases ?? []).contains(75) ||
-                                  (tables?.teams?[index].stagePhases ?? [])
-                                      .contains(3) ||
-                                  (tables?.teams?[index].stagePhases ?? [])
-                                      .contains(1) ||
-                                  (tables?.teams?[index].stagePhases ?? [])
-                                      .contains(12) ||
-                                  (tables?.teams?[index].stagePhases ?? [])
-                                      .contains(15) ||
-                                  (tables?.teams?[index].stagePhases ?? [])
-                                      .contains(13) ||
-                                  (tables?.teams?[index].stagePhases ?? [])
-                                      .contains(19)
-                              ? Colors.green
-                              : (tables?.teams?[index].stagePhases ?? []).contains(74) ||
-                                      (tables?.teams?[index].stagePhases ?? [])
-                                          .contains(8) ||
-                                      (tables?.teams?[index].stagePhases ?? [])
-                                          .contains(9) ||
-                                      (tables?.teams?[index].stagePhases ?? [])
-                                          .contains(7) ||
-                                      (tables?.teams?[index].stagePhases ?? [])
-                                          .contains(45) ||
-                                      (tables?.teams?[index].stagePhases ?? [])
-                                          .contains(14) ||
-                                      (tables?.teams?[index].stagePhases ?? [])
-                                          .contains(20)
-                                  ? Colors.cyan
-                                  : (tables?.teams?[index].stagePhases ?? []).contains(68) ||
-                                          (tables?.teams?[index].stagePhases ?? []).contains(61) ||
-                                          (tables?.teams?[index].stagePhases ?? []).contains(21)
-                                      ? Colors.blue
-                                      : (tables?.teams?[index].stagePhases ?? []).contains(6)
-                                          ? Colors.orange
-                                          : (tables?.teams?[index].stagePhases ?? []).contains(2)
-                                              ? Colors.pink
-                                              : (tables?.teams?[index].stagePhases ?? []).contains(4)
-                                                  ? Colors.greenAccent
-                                                  : (tables?.teams?[index].stagePhases ?? []).contains(48)
-                                                      ? Colors.brown
-                                                      : Colors.white,
-                          height: 30.h,
-                        ),
-                        kSizedBoxW10,
-                        SizedBox(
-                          width: 1.sw * 0.05,
-                          child: CustomText(
-                            text: "${index + 1}",
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => const TeamScreen(),
+                          arguments: {'teamId': tables?.teams?[index].teamId});
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.only(bottom: 2.h, top: 2.h, right: 10.w),
+                      color: tables?.teams?[index].teamId == homeId ||
+                              tables?.teams?[index].teamId == awayId
+                          ? tableTeamColor
+                          : Colors.white,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 4.w,
+                            color: (tables?.teams?[index].stagePhases ?? [])
+                                        .contains(75) ||
+                                    (tables?.teams?[index].stagePhases ?? [])
+                                        .contains(3) ||
+                                    (tables?.teams?[index].stagePhases ?? [])
+                                        .contains(1) ||
+                                    (tables?.teams?[index].stagePhases ?? [])
+                                        .contains(12) ||
+                                    (tables?.teams?[index].stagePhases ?? [])
+                                        .contains(15) ||
+                                    (tables?.teams?[index].stagePhases ?? [])
+                                        .contains(13) ||
+                                    (tables?.teams?[index].stagePhases ?? [])
+                                        .contains(19)
+                                ? Colors.green
+                                : (tables?.teams?[index].stagePhases ?? []).contains(74) ||
+                                        (tables?.teams?[index].stagePhases ?? [])
+                                            .contains(8) ||
+                                        (tables?.teams?[index].stagePhases ?? [])
+                                            .contains(9) ||
+                                        (tables?.teams?[index].stagePhases ?? [])
+                                            .contains(7) ||
+                                        (tables?.teams?[index].stagePhases ?? [])
+                                            .contains(45) ||
+                                        (tables?.teams?[index].stagePhases ?? [])
+                                            .contains(14) ||
+                                        (tables?.teams?[index].stagePhases ?? [])
+                                            .contains(20)
+                                    ? Colors.cyan
+                                    : (tables?.teams?[index].stagePhases ?? []).contains(68) || (tables?.teams?[index].stagePhases ?? []).contains(61) || (tables?.teams?[index].stagePhases ?? []).contains(21)
+                                        ? Colors.blue
+                                        : (tables?.teams?[index].stagePhases ?? []).contains(6)
+                                            ? Colors.orange
+                                            : (tables?.teams?[index].stagePhases ?? []).contains(2)
+                                                ? Colors.pink
+                                                : (tables?.teams?[index].stagePhases ?? []).contains(4)
+                                                    ? Colors.greenAccent
+                                                    : (tables?.teams?[index].stagePhases ?? []).contains(48)
+                                                        ? Colors.brown
+                                                        : Colors.white,
+                            height: 30.h,
                           ),
-                        ),
-                        // Icon(
-                        //   Icons.account_circle,
-                        //   size: 30.sp,
-                        //   color: secondaryColor,
-                        // ),
-                   
-                        FastCachedImage(
-                          width: 16.w,
-                          url:
-                              'https://api.snaptech.dev/logos/soccer/1/${tables?.teams?[index].teamId}/teamlogo.png',
-                          fit: BoxFit.cover,
-                          fadeInDuration: const Duration(seconds: 1),
-                          errorBuilder: (context, exception, stacktrace) =>
-                              SizedBox(
-                                  width: 16.w,
-                                  child: Icon(
-                                    Icons.sports_soccer,
-                                    color: secondaryColor,
-                                    size: 18.sp,
-                                  )),
-                          loadingBuilder: (context, progress) {
-                            return SizedBox(
-                              width: 16.w,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  if (progress.isDownloading &&
-                                      progress.totalBytes != null)
-                                    SizedBox(
-                                        width: 16.w,
-                                        child: CircularProgressIndicator(
-                                            color: Colors.green,
-                                            value: progress
-                                                .progressPercentage.value)),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                        kSizedBoxW5,
-                        Expanded(
-                          child: CustomText(
-                              text: tables?.teams?[index].teamName ?? ''),
-                        ),
-                        SizedBox(
-                          width: 1.sw * 0.07,
-                          child: CustomText(
-                            text: "${tables?.teams?[index].played ?? 0}",
-                            textAlign: TextAlign.center,
+                          kSizedBoxW10,
+                          SizedBox(
+                            width: 1.sw * 0.05,
+                            child: CustomText(
+                              text: "${index + 1}",
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 1.sw * 0.07,
-                          child: CustomText(
-                            text: "${tables?.teams?[index].wins ?? 0}",
-                            textAlign: TextAlign.center,
+                          // Icon(
+                          //   Icons.account_circle,
+                          //   size: 30.sp,
+                          //   color: secondaryColor,
+                          // ),
+
+                          FastCachedImage(
+                            width: 16.w,
+                            url:
+                                'https://api.snaptech.dev/logos/soccer/1/${tables?.teams?[index].teamId}/teamlogo.png',
+                            fit: BoxFit.cover,
+                            fadeInDuration: const Duration(seconds: 1),
+                            errorBuilder: (context, exception, stacktrace) =>
+                                SizedBox(
+                                    width: 16.w,
+                                    child: Icon(
+                                      Icons.sports_soccer,
+                                      color: secondaryColor,
+                                      size: 18.sp,
+                                    )),
+                            loadingBuilder: (context, progress) {
+                              return SizedBox(
+                                width: 16.w,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    if (progress.isDownloading &&
+                                        progress.totalBytes != null)
+                                      SizedBox(
+                                          width: 16.w,
+                                          child: CircularProgressIndicator(
+                                              color: Colors.green,
+                                              value: progress
+                                                  .progressPercentage.value)),
+                                  ],
+                                ),
+                              );
+                            },
                           ),
-                        ),
-                        SizedBox(
-                          width: 1.sw * 0.07,
-                          child: CustomText(
-                            text: "${tables?.teams?[index].draws ?? 0}",
-                            textAlign: TextAlign.center,
+                          kSizedBoxW5,
+                          Expanded(
+                            child: CustomText(
+                                text: tables?.teams?[index].teamName ?? ''),
                           ),
-                        ),
-                        SizedBox(
-                          width: 1.sw * 0.07,
-                          child: CustomText(
-                            text: "${tables?.teams?[index].loss ?? 0}",
-                            textAlign: TextAlign.center,
+                          SizedBox(
+                            width: 1.sw * 0.07,
+                            child: CustomText(
+                              text: "${tables?.teams?[index].played ?? 0}",
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 1.sw * 0.07,
-                          child: CustomText(
-                            text:
-                                "${tables?.teams?[index].goalDifference ?? 0}",
-                            textAlign: TextAlign.center,
+                          SizedBox(
+                            width: 1.sw * 0.07,
+                            child: CustomText(
+                              text: "${tables?.teams?[index].wins ?? 0}",
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 1.sw * 0.07,
-                          child: CustomText(
-                            text: "${tables?.teams?[index].points ?? 0}",
-                            textAlign: TextAlign.center,
+                          SizedBox(
+                            width: 1.sw * 0.07,
+                            child: CustomText(
+                              text: "${tables?.teams?[index].draws ?? 0}",
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            width: 1.sw * 0.07,
+                            child: CustomText(
+                              text: "${tables?.teams?[index].loss ?? 0}",
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 1.sw * 0.07,
+                            child: CustomText(
+                              text:
+                                  "${tables?.teams?[index].goalDifference ?? 0}",
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 1.sw * 0.07,
+                            child: CustomText(
+                              text: "${tables?.teams?[index].points ?? 0}",
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Visibility(
